@@ -1,47 +1,79 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Management System</title>
-    <link rel="icon" type="image" href="{% static 'Images/logo.png' %}">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"> -->
+    <link rel="icon" type="image" href="{% static 'Images/logo.png' %}" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100 h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Welcome Back</h2>
-        
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 h-screen flex items-center justify-center p-4">
+
+    <!-- site loading -->
+    <div id="loader"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 transition-opacity duration-500">
+        <div class="relative">
+            <div class="w-16 h-16 border-4 border-slate-700 rounded-full"></div>
+            <div
+                class="absolute top-0 w-16 h-16 border-4 border-t-sky-500 border-r-transparent border-b-sky-500 border-l-transparent rounded-full animate-spin">
+            </div>
+            <div class="absolute top-6 left-6 w-4 h-4 bg-sky-500 rounded-full animate-pulse"></div>
+        </div>
+    </div>
+
+    <div class="bg-white/95 backdrop-blur-sm p-8 rounded-3xl shadow-2xl w-full max-w-md border border-white/20">
+
+        <div class="text-center mb-3">
+            <div class="inline-block p-3 rounded-2xl bg-blue-600 text-white mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+        </div>
+        <h2 class="text-2xl mb-2 font-bold text-slate-800">Student Portal</h2>
+        <p class="text-slate-500 mb-3 text-sm">Login to your academic dashboard</p>
+        </div>
+
         <form method="post" id="formSubmit" novalidate>
             {% csrf_token %}
-            <h2 class="text-center mb-3">Student Management System</h2>
-            <h3 class="text-center mb-3"> Welcome Back!</h3>
-            <div class="form-floating">
-                <input type="text" class="form-control" name="username" placeholder="Enter your name"
-                    fdprocessedid="auvp7">
-                <label for="floatingInput">Username</label>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-600 mb-1" for="username">Username</label>
+                <input type="text" name="username" placeholder="Enter your name"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" />
             </div>
 
-            <div class="form-floating">
-                <input type="password" class="form-control" name="password" placeholder="Password"
-                    fdprocessedid="6dms9f">
-                <label for="floatingPassword">Password</label>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-600 mb-1" for="password">Password</label>
+                <input type="password" name="password" placeholder="Password"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200" />
             </div>
-            <div class="form-check text-start my-3"> <input class="form-check-input" type="checkbox" name="remember-me"
-                    value="remember-me">
-                <label class="form-check-label">
+
+            <div class="flex items-center mb-6">
+                <input class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" type="checkbox"
+                    name="remember-me" value="remember-me" />
+                <label class="ml-2 text-sm text-gray-600 cursor-pointer select-none">
                     Remember me
                 </label>
             </div>
-            <button class="btn btn-primary w-100 py-2" type="submit" fdprocessedid="bfcwrq">Login</button>
+            <button
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md"
+                type="submit" fdprocessedid="bfcwrq">
+                Login
+            </button>
         </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="{% static 'JS/script.js' %}"></script>
 </body>
 
 </html>
