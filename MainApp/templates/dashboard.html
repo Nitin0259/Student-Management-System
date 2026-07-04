@@ -7,12 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management System</title>
     <link rel="icon" type="image" href="{% static 'Images/logo.png' %}">
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
     <link rel="stylesheet" href="{% static 'src/style.css' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
 </head>
 
-<body class="bg-slate-100 flex h-screen">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
     <!-- site loader -->
     <div id="loader"
         class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 transition-opacity duration-500">
@@ -34,16 +53,13 @@
             class="w-72 bg-slate-900 text-white transition-all duration-500 ease-in-out flex flex-col overflow-hidden">
 
             <!-- Logo -->
-            <div id="brandName" class="flex items-center gap-2 px-3 py-6 border-b border-slate-700 whitespace-nowrap">
+            <div id="brandName" class="flex items-center gap-2 pl-4 py-6 border-b border-slate-700 whitespace-nowrap">
                 <div class="text-indigo-500 text-3xl">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
 
                 <div class="sidebar-text flex flex-col transition-opacity duration-300">
-                    <span class="text-white text-3xl font-bold tracking-tight">SMS</span>
-                    <span class="text-slate-400 text-[12px] font-medium tracking-wider">
-                        Student Management System
-                    </span>
+                    <span class="text-white text-[34px] font-bold tracking-tight">SMS</span>
                 </div>
             </div>
 
@@ -51,7 +67,7 @@
             <nav class="flex-1 px-4 py-6 space-y-2">
 
                 <a href="{% url 'dashboard' %}"
-                    class="nav-item flex items-center px-4 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 hover:translate-x-1 hover:shadow-lg transition-all duration-300">
+                    class="nav-item flex items-center px-3 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 hover:translate-x-1 hover:shadow-lg transition-all duration-300">
                     <i
                         class="fa-solid fa-gauge text-lg group-hover:rotate-12 transition-transform duration-300"></i><span
                         class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Dashboard</span>
@@ -96,73 +112,76 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
-        <header class="bg-white h-20 px-8 border-b border-slate-200 flex items-center justify-between">
-            <div class="flex items-center gap-6">
+        <!-- Header part -->
+        <div class="w-full">
+            <header
+                class="h-20 bg-white border-b glass border-slate-200 flex items-center justify-between px-8 shrink-0 shadow-sm">
+                <div class="flex items-center gap-6">
 
-                <!-- sidebar btn toogle -->
-                <button id="toggleBtn"
-                    class="w-11 h-11 rounded-xl hover:bg-slate-100 transition flex items-center justify-center">
-                    <i class="fa-solid fa-bars text-xl text-slate-700"></i>
-                </button>
+                    <!-- sidebar btn toogle -->
+                    <button id="toggleBtn"
+                        class="w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center cursor-pointer">
+                        <i class="fa-solid fa-bars text-xl text-slate-700 dark:text-slate-50"></i>
+                    </button>
 
-                <div class="relative hidden md:block mr-6">
-                    <input type="text" placeholder="Search student..."
-                        class="w-96 h-12 pl-5 pr-12 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none transition">
+                    <div class="relative hidden md:block mr-6">
+                        <input type="text" placeholder="Search student..."
+                            class="w-96 h-12 pl-5 pr-12 rounded-xl bg-slate-50 text-slate-700 border border-slate-300 dark:bg-slate-800 dark:border-slate-700 dark:text-white dark:placeholder:text-slate-400">
 
-                    <button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button
+                        class="relative w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center">
+
+                        <i class="fa-regular fa-bell text-xl text-slate-700 dark:text-slate-50"></i>
+
+                        <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500"></span>
+
+                        <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+
+                    </button>
+
+                    <!-- Theme toggle -->
+                    <button
+                        class="myToggleBtn w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 text-xl transition-color transition flex items-center justify-center">
+                        <i class="fa-solid fa-moon theme_icon text-slate-700 text-lg"></i>
+                    </button>
+
+                    <!-- Profile -->
+                    <button
+                        class="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+
+                        <!-- User Icon -->
+                        <div
+                            class="w-12 h-12 rounded-full bg-linear-to-r from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-user text-white text-lg"></i>
+                        </div>
+
+                        <!-- User Info -->
+                        <div class="hidden lg:block text-left">
+                            <h4 class="font-semibold text-slate-800 dark:text-slate-50 leading-none">
+                                Admin User
+                            </h4>
+
+                            <p class="text-sm text-slate-500 mt-1">
+                                Administrator
+                            </p>
+                        </div>
+
+                        <!-- Dropdown -->
+                        <i class="fa-solid fa-chevron-down text-xs text-slate-500 dark:text-slate-50"></i>
+
                     </button>
                 </div>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <button
-                    class="relative w-11 h-11 rounded-xl hover:bg-slate-100 transition flex items-center justify-center">
-
-                    <i class="fa-regular fa-bell text-xl text-slate-700"></i>
-
-                    <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500"></span>
-
-                    <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
-
-                </button>
-
-                <!-- Theme toggle -->
-                <button
-                    class="myToggleBtn w-11 h-11 rounded-xl hover:bg-slate-100 transition flex items-center justify-center">
-                    <i class="fa-solid fa-moon theme_icon text-slate-700 text-lg"></i>
-                </button>
-
-                <!-- Profile -->
-                <button class="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-100 transition">
-
-                    <!-- User Icon -->
-                    <div
-                        class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
-                        <i class="fa-solid fa-user text-white text-lg"></i>
-                    </div>
-
-                    <!-- User Info -->
-                    <div class="hidden lg:block text-left">
-                        <h4 class="font-semibold text-slate-800 leading-none">
-                            Admin User
-                        </h4>
-
-                        <p class="text-sm text-slate-500 mt-1">
-                            Administrator
-                        </p>
-                    </div>
-
-                    <!-- Dropdown -->
-                    <i class="fa-solid fa-chevron-down text-xs text-slate-500"></i>
-
-                </button>
-            </div>
-        </header>
+            </header>
+        </div>
 
     </div>
-
     <script src="{% static 'JS/script.js' %}"></script>
 
     <script>
@@ -172,7 +191,7 @@
         const sidebarTexts = document.querySelectorAll(".sidebar-text")
 
         toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle("w-68")
+            sidebar.classList.toggle("w-72")
             sidebar.classList.toggle("w-20")
 
             sidebarTexts.forEach(text => {
@@ -180,6 +199,38 @@
                 text.classList.toggle("hidden")
             })
         })
+
+        // Theme toggle
+        const themeToggle = document.querySelectorAll(".myToggleBtn")
+
+        themeToggle.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.documentElement.classList.toggle("dark")
+
+                const isDark = document.documentElement.classList.contains("dark");
+
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+
+                document.querySelectorAll(".theme_icon").forEach(icon => {
+                    if (isDark) {
+                        icon.classList.remove("fa-moon", "text-slate-600");
+                        icon.classList.add("fa-sun", "text-yellow-400");
+                    } else {
+                        icon.classList.remove("fa-sun", "text-yellow-400");
+                        icon.classList.add("fa-moon", "text-slate-600");
+                    }
+                })
+            })
+        })
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.classList.add("dark")
+
+            document.querySelectorAll(".theme_icon").forEach(icon => {
+                icon.classList.remove("fa-moon", "text-slate-600");
+                icon.classList.add("fa-sun", "text-yellow-400");
+            });
+        }
     </script>
 </body>
 
