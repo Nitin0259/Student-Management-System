@@ -64,20 +64,24 @@
 
                 <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-user-plus text-lg"></i><span
-                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Add Student</span>
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Add
+                        Student</span>
                 </a>
 
                 <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-magnifying-glass text-lg"></i>
-                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Search</span>
+                    <span
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Search</span>
                 </a>
                 <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-chart-line text-lg"></i>
-                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Reports</span>
+                    <span
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Reports</span>
                 </a>
                 <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-gear text-lg"></i>
-                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Settings</span>
+                    <span
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Settings</span>
                 </a>
             </nav>
 
@@ -86,38 +90,76 @@
                 <a href="#"
                     class="nav-item flex items-center justify-center px-4 py-3 rounded-lg bg-red-600 hover:bg-red-700 transition">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Logout</span>
+                    <span
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Logout</span>
                 </a>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 flex flex-col">
-            <header class="bg-white p-4 flex justify-between items-center shadow-sm">
+        <header class="bg-white h-20 px-8 border-b border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+
                 <!-- sidebar btn toogle -->
-                <button id="toggleBtn" class="text-xl hover:text-sky-400">
-                    <i class="fa-solid fa-bars"></i>
+                <button id="toggleBtn"
+                    class="w-11 h-11 rounded-xl hover:bg-slate-100 transition flex items-center justify-center">
+                    <i class="fa-solid fa-bars text-xl text-slate-700"></i>
                 </button>
 
-                <div class="relative w-80">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <div class="relative hidden md:block mr-6">
+                    <input type="text" placeholder="Search student..."
+                        class="w-96 h-12 pl-5 pr-12 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 outline-none transition">
 
-                    <input type="text" placeholder="Search..."
-                        class="w-full pl-11 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
+            </div>
 
-                <div class="flex items-center gap-4">
-                    <div class="relative cursor-pointer">
-                        <i class="fa-solid fa-bell text-2xl text-gray-700 hover:text-indigo-600 transition"></i>
-                        <span
-                            class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
-                            3
-                        </span>
+            <div class="flex items-center gap-4">
+                <button
+                    class="relative w-11 h-11 rounded-xl hover:bg-slate-100 transition flex items-center justify-center">
+
+                    <i class="fa-regular fa-bell text-xl text-slate-700"></i>
+
+                    <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500"></span>
+
+                    <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+
+                </button>
+
+                <!-- Theme toggle -->
+                <button
+                    class="myToggleBtn w-11 h-11 rounded-xl hover:bg-slate-100 transition flex items-center justify-center">
+                    <i class="fa-solid fa-moon theme_icon text-slate-700 text-lg"></i>
+                </button>
+
+                <!-- Profile -->
+                <button class="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-100 transition">
+
+                    <!-- User Icon -->
+                    <div
+                        class="w-12 h-12 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                        <i class="fa-solid fa-user text-white text-lg"></i>
                     </div>
-                    <div class="w-8 h-8 rounded-full bg-slate-300"></div>
-                </div>
-            </header>
-        </main>
+
+                    <!-- User Info -->
+                    <div class="hidden lg:block text-left">
+                        <h4 class="font-semibold text-slate-800 leading-none">
+                            Admin User
+                        </h4>
+
+                        <p class="text-sm text-slate-500 mt-1">
+                            Administrator
+                        </p>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <i class="fa-solid fa-chevron-down text-xs text-slate-500"></i>
+
+                </button>
+            </div>
+        </header>
 
     </div>
 
