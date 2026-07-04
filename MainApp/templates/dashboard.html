@@ -31,7 +31,7 @@
 
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="w-68 bg-slate-900 text-white transition-all duration-300 ease-in-out flex flex-col overflow-hidden">
+            class="w-72 bg-slate-900 text-white transition-all duration-500 ease-in-out flex flex-col overflow-hidden">
 
             <!-- Logo -->
             <div id="brandName" class="flex items-center gap-2 px-3 py-6 border-b border-slate-700 whitespace-nowrap">
@@ -51,41 +51,42 @@
             <nav class="flex-1 px-4 py-6 space-y-2">
 
                 <a href="{% url 'dashboard' %}"
-                    class="flex items-center px-4 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 hover:translate-x-2 hover:shadow-lg transition-all duration-300">
+                    class="nav-item flex items-center px-4 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 hover:translate-x-1 hover:shadow-lg transition-all duration-300">
                     <i
                         class="fa-solid fa-gauge text-lg group-hover:rotate-12 transition-transform duration-300"></i><span
-                        class="sidebar-text ml-3 font-medium transition-opacity duration-300">Dashboard</span>
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Dashboard</span>
                 </a>
 
-                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+                <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-user-graduate text-lg"></i><span
-                        class="sidebar-text ml-3 transition-opacity duration-300">Students</span>
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Students</span>
                 </a>
 
-                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
-                    <i class="fa-solid fa-user-plus text-lg"></i><span class="sidebar-text ml-3 transition-opacity duration-300">Add Student</span>
+                <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-user-plus text-lg"></i><span
+                        class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Add Student</span>
                 </a>
 
-                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+                <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-magnifying-glass text-lg"></i>
-                    <span class="sidebar-text ml-3 transition-opacity duration-300">Search</span>
+                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Search</span>
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+                <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-chart-line text-lg"></i>
-                    <span class="sidebar-text ml-3 transition-opacity duration-300">Reports</span>
+                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Reports</span>
                 </a>
-                <a href="#" class="flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+                <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
                     <i class="fa-solid fa-gear text-lg"></i>
-                    <span class="sidebar-text ml-3 transition-opacity duration-300">Settings</span>
+                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Settings</span>
                 </a>
             </nav>
 
             <!-- Logout -->
             <div class="p-4 border-t border-slate-700">
                 <a href="#"
-                    class="flex items-center justify-center px-4 py-3 rounded-lg bg-red-600 hover:bg-red-700 transition">
+                    class="nav-item flex items-center justify-center px-4 py-3 rounded-lg bg-red-600 hover:bg-red-700 transition">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="sidebar-text ml-3 font-medium transition-opacity duration-300">Logout</span>
+                    <span class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Logout</span>
                 </a>
             </div>
         </aside>
@@ -97,10 +98,17 @@
                 <button id="toggleBtn" class="text-xl hover:text-sky-400">
                     <i class="fa-solid fa-bars"></i>
                 </button>
+
+                <div class="relative w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+
+                    <input type="text" placeholder="Search..."
+                        class="w-full pl-11 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+
                 <div class="flex items-center gap-4">
                     <div class="relative cursor-pointer">
                         <i class="fa-solid fa-bell text-2xl text-gray-700 hover:text-indigo-600 transition"></i>
-
                         <span
                             class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
                             3
@@ -119,7 +127,7 @@
         // sidebar btn slider
         const sidebar = document.getElementById("sidebar")
         const toggleBtn = document.getElementById("toggleBtn")
-        const sidebarTexts = document.querySelectorAll(".sidebar-text") 
+        const sidebarTexts = document.querySelectorAll(".sidebar-text")
 
         toggleBtn.addEventListener('click', () => {
             sidebar.classList.toggle("w-68")

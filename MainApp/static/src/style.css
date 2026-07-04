@@ -7,3 +7,16 @@ body{
 main{
     width: 100%;
 }
+
+.sidebar-text{
+    transition: all .45s ease;
+    white-space: nowrap;
+}
+
+.nav-item{
+    transition: all .45s ease;
+}
+
+#sidebar{
+    transition: width .45s ease;
+}
