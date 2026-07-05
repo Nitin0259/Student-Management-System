@@ -20,7 +20,7 @@
         }
 
         .dark .glass {
-            background: rgba(15, 23, 42, 0.45);
+            background-color: rgba(15, 23, 42, 1);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -50,7 +50,7 @@
 
         <!-- Sidebar -->
         <aside id="sidebar"
-            class="w-72 bg-slate-900 text-white transition-all duration-500 ease-in-out flex flex-col overflow-hidden">
+            class="w-72 bg-slate-900 border border-slate-700 text-white transition-all duration-500 ease-in-out flex flex-col overflow-hidden">
 
             <!-- Logo -->
             <div id="brandName" class="flex items-center gap-2 pl-4 py-6 border-b border-slate-700 whitespace-nowrap">
@@ -120,13 +120,13 @@
 
                     <!-- sidebar btn toogle -->
                     <button id="toggleBtn"
-                        class="w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center cursor-pointer">
+                        class="w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition flex items-center justify-center cursor-pointer">
                         <i class="fa-solid fa-bars text-xl text-slate-700 dark:text-slate-50"></i>
                     </button>
 
                     <div class="relative hidden md:block mr-6">
                         <input type="text" placeholder="Search student..."
-                            class="w-96 h-12 pl-5 pr-12 rounded-xl bg-slate-50 text-slate-700 border border-slate-300 dark:bg-slate-800 dark:border-slate-700 dark:text-white dark:placeholder:text-slate-400">
+                            class="w-96 h-12 pl-5 pr-12 rounded-xl bg-slate-50 text-slate-700 border dark:bg-slate-800 dark:border-slate-700 dark:text-white focus:outline-none dark:placeholder:text-slate-700">
 
                         <button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -136,7 +136,7 @@
 
                 <div class="flex items-center gap-4">
                     <button
-                        class="relative w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center">
+                        class="relative w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition flex items-center justify-center">
 
                         <i class="fa-regular fa-bell text-xl text-slate-700 dark:text-slate-50"></i>
 
@@ -154,7 +154,7 @@
 
                     <!-- Profile -->
                     <button
-                        class="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                        class="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800 transition">
 
                         <!-- User Icon -->
                         <div
@@ -181,6 +181,13 @@
             </header>
         </div>
 
+        <!-- Main section -->
+         <section class="p-8 dark:bg-slate-900">
+            <div class="container">
+                <h2>Welcome, {{user.username}}!</h2>
+                <p>This is your personalized dashboard</p>
+            </div>
+        </section>
     </div>
     <script src="{% static 'JS/script.js' %}"></script>
 
