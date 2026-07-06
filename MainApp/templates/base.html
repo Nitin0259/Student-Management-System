@@ -122,58 +122,111 @@
     currentDate.querySelector("span").textContent = today.toLocaleDateString("en-IN", options)
 
     function createMiniChart(id, data, color) {
-    new Chart(document.getElementById(id), {
+      new Chart(document.getElementById(id), {
         type: "line",
         data: {
-            labels: ["", "", "", "", "", ""],
-            datasets: [{
-                data: data,
-                borderColor: color,
-                borderWidth: 2,
-                tension: 0.4,
-                pointRadius: 0,
-                fill: false
-            }]
+          labels: ["", "", "", "", "", ""],
+          datasets: [{
+            data: data,
+            borderColor: color,
+            borderWidth: 2,
+            tension: 0.4,
+            pointRadius: 0,
+            fill: false
+          }]
         },
         options: {
-            responsive: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: { enabled: false }
-            },
-            scales: {
-                x: { display: false },
-                y: { display: false }
-            }
+          responsive: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false }
+          },
+          scales: {
+            x: { display: false },
+            y: { display: false }
+          }
         }
-    });
-}
+      });
+    }
 
-// Total student
-   createMiniChart(
-    "totalStudentsChart",
-    [20, 25, 28, 27, 31, 36],
-    "#4f46e5"
-);
-// Male Student
+    // Total student
+    createMiniChart(
+      "totalStudentsChart",
+      [20, 25, 28, 26, 31, 36],
+      "#4f46e5"
+    );
+    // Male Student
     createMiniChart(
       "maleStudentsChart",
       [12, 14, 13, 16, 14, 17],
       "#22c55e"
     )
-// Female student
+    // Female student
     createMiniChart(
       "femaleStudentsChart",
       [8, 10, 9, 12, 14, 11],
       "#ec4899"
     )
 
-// Total courses
+    // Total courses
     createMiniChart(
       "totalCoursesChart",
-      [8, 10, 9, 15, 13, 11],
+      [8, 10, 12, 11, 13, 11],
       "#007fff"
     )
+
+    // Admission-overview chart
+    new Chart(document.getElementById("admissionChart"), {
+
+      type: "line",
+
+      data: {
+
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+
+        datasets: [{
+
+          data: [10, 17, 14, 24, 30, 18, 25],
+
+          borderColor: "#4f46e5",
+
+          backgroundColor: "rgba(79,70,229,.12)",
+
+          fill: true,
+
+          pointRadius: 4,
+
+          pointHoverRadius: 6,
+
+          tension: .4
+
+        }]
+
+      },
+
+      options: {
+
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+
+        scales: {
+          x: {
+            grid: {
+              display: false
+            }
+          },
+
+          y: {
+            beginAtZero: true
+          }
+        }
+
+      }
+
+    });
 
   </script>
 </body>

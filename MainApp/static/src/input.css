@@ -1,3 +1,6 @@
 @import "tailwindcss";
 
+@source "../../templates";
+@source "../../**/*.py";
+
 @custom-variant dark (&:where(.dark, .dark *));
