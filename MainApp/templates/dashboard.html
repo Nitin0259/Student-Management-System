@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="flex items-start justify-between px-8 pt-6 w-full">
 
+<div class="flex items-start justify-between px-8 pt-6 w-full">
   <!-- Left-part -->
   <div class="left-part">
     <h2 class="text-3xl md:text-4xl font-bold leading-tight transform translate-y-0 transition duration-1000">
@@ -17,197 +17,80 @@
     <div id="showCurrentDate"
       class="w-70 h-12 flex items-center gap-2 text-slate-600 dark:text-slate-300 px-4 rounded-xl border border-slate-300 dark:border-slate-700">
       <i class="fa-solid fa-calendar-days dark:text-slate-50"></i><span
-        class="text-slate-900 dark:text-white font-medium">Loading...</span>
+        class="text-slate-900 dark:text-white lg:text-xs font-medium">Loading...</span>
     </div>
   </div>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:28px 32px;">
-  <!-- Card -->
-  <div
-    class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-lg transition-all duration-300">
-
-    <!-- Top -->
-    <div class="flex items-center gap-4 pb-3">
-
-      <!-- Icon -->
-      <div class="w-14 h-14 rounded-xl bg-indigo-100 dark:bg-indigo-500/20 flex items-center justify-center shrink-0">
-        <i class="fa-solid fa-users text-2xl text-indigo-600 dark:text-indigo-400"></i>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:28px 24px;">
+  
+  <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+    <div class="flex items-center gap-4">
+      <div class="w-14 h-14 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
+        <i class="fa-solid fa-users text-2xl text-indigo-600"></i>
       </div>
-
-      <!-- Title & Number -->
       <div>
-        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
-          Total Students
-        </p>
-
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white leading-none mt-1">
-          120
-        </h2>
+        <p class="text-sm font-medium text-slate-500">Total Students</p>
+        <h2 class="text-4xl font-bold text-slate-900 mt-1">120</h2>
       </div>
-
     </div>
-
-    <!-- Bottom -->
-    <div class="mt-6 flex items-end justify-between">
-
-      <div class="flex items-center gap-1.5">
-
-        <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
-
-        <span class="text-green-500 font-semibold text-sm">
-          12
-        </span>
-
-        <span class="text-sm text-slate-500 dark:text-slate-400">
-          this month
-        </span>
-
-      </div>
-
-      <!-- Mini Chart -->
-      <!-- <div class="w-28 h-10">
-                <canvas id="studentChart"></canvas>
-              </div> -->
-
+    <div class="mt-5 flex items-center gap-2">
+      <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
+      <span class="text-green-500 font-semibold text-sm">12</span>
+      <span class="text-sm text-slate-500">this month</span>
+      <canvas id="totalStudentsChart" width="85" height="35"></canvas>
     </div>
   </div>
-  <div
-    class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-lg transition-all duration-300">
 
-    <!-- Top -->
-    <div class="flex items-center gap-4 pb-3">
-
-      <!-- Icon -->
-      <div class="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center">
+  <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+    <div class="flex items-center gap-4">
+      <div class="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center shrink-0">
         <i class="fa-solid fa-person text-3xl text-green-600"></i>
       </div>
-
-      <!-- Title & Number -->
       <div>
-        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
-          Male Students
-        </p>
-
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white leading-none mt-1">
-          70
-        </h2>
+        <p class="text-sm font-medium text-slate-500">Male Students</p>
+        <h2 class="text-4xl font-bold text-slate-900 mt-1">70</h2>
       </div>
-
     </div>
-
-    <!-- Bottom -->
-    <div class="mt-6 flex items-end justify-between">
-
-      <div class="flex items-center gap-1.5">
-
-        <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
-
-        <span class="text-green-500 font-semibold text-sm">
-          12
-        </span>
-
-        <span class="text-sm text-slate-500 dark:text-slate-400">
-          this month
-        </span>
-
-      </div>
-
-      <!-- Mini Chart -->
-      <!-- <div class="w-28 h-10">
-                <canvas id="studentChart"></canvas>
-              </div> -->
-
+    <div class="mt-5 flex items-center gap-2">
+      <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
+      <span class="text-green-500 font-semibold text-sm">8</span>
+      <span class="text-sm text-slate-500">this month</span>
+      <canvas id="maleStudentsChart" width="85" height="35"></canvas>
     </div>
   </div>
-  <div
-    class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-lg transition-all duration-300">
 
-    <!-- Top -->
-    <div class="flex items-center gap-4 pb-3">
-
-      <!-- Icon -->
-      <div class="w-14 h-14 rounded-xl bg-pink-100 flex items-center justify-center">
+  <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+    <div class="flex items-center gap-4">
+      <div class="w-14 h-14 rounded-xl bg-pink-100 flex items-center justify-center shrink-0">
         <i class="fa-solid fa-person-dress text-3xl text-pink-500"></i>
       </div>
-
-      <!-- Title & Number -->
       <div>
-        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
-          Female Students
-        </p>
-
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white leading-none mt-1">
-          50
-        </h2>
+        <p class="text-sm font-medium text-slate-500">Female Students</p>
+        <h2 class="text-4xl font-bold text-slate-900 mt-1">50</h2>
       </div>
-
     </div>
-
-    <!-- Bottom -->
-    <div class="mt-6 flex items-end justify-between">
-
-      <div class="flex items-center gap-1.5">
-
-        <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
-
-        <span class="text-green-500 font-semibold text-sm">
-          12
-        </span>
-
-        <span class="text-sm text-slate-500 dark:text-slate-400">
-          this month
-        </span>
-
-      </div>
-
-      <!-- Mini Chart -->
-      <!-- <div class="w-28 h-10">
-                <canvas id="studentChart"></canvas>
-              </div> -->
-
+    <div class="mt-5 flex items-center gap-2">
+      <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
+      <span class="text-green-500 font-semibold text-sm">4</span>
+      <span class="text-sm text-slate-500">this month</span>
+      <canvas id="femaleStudentsChart" width="90" height="35"></canvas>
     </div>
   </div>
-  <div
-    class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-lg transition-all duration-300">
 
-    <!-- Top -->
-    <div class="flex items-center gap-4 pb-3">
-
-      <!-- Icon -->
-      <div class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center">
-        <i class="fa-solid fa-book-open text-3xl text-blue-600"></i>
+  <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
+    <div class="flex items-center gap-4">
+      <div class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+        <i class="fa-solid fa-book-open text-2xl text-blue-600"></i>
       </div>
-
-      <!-- Title & Number -->
       <div>
-        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">
-          Total Courses
-        </p>
-
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white leading-none mt-1">
-          6
-        </h2>
+        <p class="text-sm font-medium text-slate-500">Total Courses</p>
+        <h2 class="text-4xl font-bold text-slate-900 mt-1">6</h2>
       </div>
-
     </div>
-
-    <!-- Bottom -->
-    <div class="mt-6 flex items-end justify-between">
-
-      <div class="flex items-center gap-1.5">
-
-        <span class="text-sm font-medium text-slate-500 dark:text-slate-400">
-          No change
-        </span>
-
-      </div>
-
-      <!-- Mini Chart -->
-      <!-- <div class="w-28 h-10">
-                <canvas id="studentChart"></canvas>
-              </div> -->
-
+    <div class="mt-5 flex items-center gap-2">
+      <span class="text-sm font-medium text-slate-500">No change</span>
+      <canvas id="totalCoursesChart" width="85" height="35"></canvas>
     </div>
   </div>
 
