@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:28px 24px;">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:28px 24px;">
 
   <div
     class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer">
@@ -100,27 +100,30 @@
 
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:28px 24px;">
+<div class="grid grid-cols-3 xl:grid-cols-4 lg:grid-cols-2 gap-4 p-4">
   <div
-    class="col-span-2 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-3">
-    <div class="flex justify-between items-center mb-6">
-      <h3 class="text-xl font-semibold">
+    class="col-span-2 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-3">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-bold text-slate-800 dark:text-white">
         Admissions Overview
-      </h3>
+      </h2>
 
-      <select class="border rounded-lg px-3 py-2">
+      <select
+        class="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white outline-none">
         <option>This Year</option>
+        <option>Last Year</option>
       </select>
     </div>
-    <canvas id="admissionChart" height="120"></canvas>
+    <div class="h-80">
+      <canvas id="admissionChart"></canvas>
+    </div>
   </div>
 
   <div
-    class="col-span-3 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+    class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-3">
 
   </div>
-  <div
-    class="col-span-3 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+  <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-3">
 
   </div>
 </div>
