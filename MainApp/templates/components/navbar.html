@@ -1,0 +1,59 @@
+<!-- Header part -->
+      <header
+        class="h-20 bg-white border-b glass border-slate-200 flex items-center justify-between px-8 shrink-0 shadow-sm">
+        <div class="flex items-center gap-6">
+          <!-- sidebar btn toogle -->
+          <button id="toggleBtn"
+            class="w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition flex items-center justify-center cursor-pointer">
+            <i class="fa-solid fa-bars text-xl text-slate-700 dark:text-slate-50"></i>
+          </button>
+
+          <div class="relative hidden md:block mr-6">
+            <input type="text" placeholder="Search student..."
+              class="w-96 h-12 pl-5 pr-12 rounded-xl bg-slate-50 text-slate-700 border dark:bg-slate-800 dark:border-slate-700 dark:text-white focus:outline-none dark:placeholder:text-slate-700" />
+
+            <button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-indigo-600">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button
+            class="relative w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 transition flex items-center justify-center">
+            <i class="fa-regular fa-bell text-xl text-slate-700 dark:text-slate-50"></i>
+
+            <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500"></span>
+
+            <span class="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+          </button>
+
+          <!-- Theme toggle -->
+          <button
+            class="myToggleBtn w-11 h-11 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 text-xl transition-color transition flex items-center justify-center">
+            <i class="fa-solid fa-moon theme_icon text-slate-700 text-lg"></i>
+          </button>
+
+          <!-- Profile -->
+          <button
+            class="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800 transition">
+            <!-- User Icon -->
+            <div
+              class="w-12 h-12 rounded-full bg-linear-to-r from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+              <i class="fa-solid fa-user text-white text-lg"></i>
+            </div>
+
+            <!-- User Info -->
+            <div class="hidden lg:block text-left">
+              <h4 class="font-semibold text-slate-800 dark:text-slate-50 leading-none">
+                Admin User
+              </h4>
+
+              <p class="text-sm text-slate-500 mt-1">Administrator</p>
+            </div>
+
+            <!-- Dropdown -->
+            <i class="fa-solid fa-chevron-down text-xs text-slate-500 dark:text-slate-50"></i>
+          </button>
+        </div>
+      </header>

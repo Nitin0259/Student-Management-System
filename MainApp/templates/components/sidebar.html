@@ -1,0 +1,60 @@
+<!-- Sidebar -->
+    <aside id="sidebar"
+      class="w-72 bg-slate-900 border border-slate-700 text-white transition-all duration-500 ease-in-out flex flex-col overflow-hidden">
+      <!-- Logo -->
+      <div id="brandName" class="flex items-center gap-2 pl-4 py-6 border-b border-slate-700 whitespace-nowrap">
+        <div class="text-indigo-500 text-3xl">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+
+        <div class="sidebar-text flex flex-col transition-opacity duration-300">
+          <span class="text-white text-[34px] font-bold tracking-tight">SMS</span>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 px-4 py-6 space-y-2">
+        <a href="{% url 'dashboard' %}"
+          class="nav-item flex items-center px-3 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 hover:translate-x-1 hover:shadow-lg transition-all duration-300">
+          <i class="fa-solid fa-gauge text-lg group-hover:rotate-12 transition-transform duration-300"></i><span
+            class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Dashboard</span>
+        </a>
+
+        <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fa-solid fa-user-graduate text-lg"></i><span
+            class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Students</span>
+        </a>
+
+        <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fa-solid fa-user-plus text-lg"></i><span
+            class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Add
+            Student</span>
+        </a>
+
+        <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fa-solid fa-magnifying-glass text-lg"></i>
+          <span
+            class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Search</span>
+        </a>
+        <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fa-solid fa-chart-line text-lg"></i>
+          <span
+            class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Reports</span>
+        </a>
+        <a href="#" class="nav-item flex items-center px-4 py-3 rounded-lg hover:bg-slate-800 transition">
+          <i class="fa-solid fa-gear text-lg"></i>
+          <span
+            class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Settings</span>
+        </a>
+      </nav>
+
+      <!-- Logout -->
+      <div class="p-4 border-t border-slate-700">
+        <a href="#"
+          class="nav-item flex items-center justify-center px-4 py-3 rounded-lg bg-red-600 hover:bg-red-700 transition">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span
+            class="sidebar-text ml-3 font-medium whitespace-nowrap transition-all duration-500 ease-in-out">Logout</span>
+        </a>
+      </div>
+    </aside>
