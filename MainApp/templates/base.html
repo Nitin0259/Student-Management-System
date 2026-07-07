@@ -225,7 +225,55 @@
         }
 
       }
+    });
 
+    // Student course
+    const ctx = document.getElementById("courseChart");
+
+    new Chart(ctx, {
+
+      type: "doughnut",
+
+      data: {
+
+        labels: ["BCA", "B.Tech", "MCA", "BBA", "MBA"],
+
+        datasets: [{
+
+          data: [30, 25, 20, 15, 10],
+
+          backgroundColor: [
+            "#6366F1", // Indigo
+            "#3B82F6", // Blue
+            "#22C55E", // Green
+            "#EC4899", // Pink
+            "#F59E0B"  // Orange
+          ],
+
+          borderWidth: 0,
+          hoverOffset: 8,
+        }]
+
+      },
+
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        cutout: "60%",
+
+        plugins: {
+          legend: {
+            display: false
+          },
+
+          tooltip: {
+            backgroundColor: "#1e293b",
+            padding: 12,
+            cornerRadius: 10
+          }
+        }
+      }
     });
 
   </script>
