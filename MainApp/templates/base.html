@@ -7,26 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Management System</title>
   <link rel="icon" type="image" href="{% static 'Images/logo.png' %}" />
-  <link rel="stylesheet" href="{% static 'src/output.css' %}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
   <link rel="stylesheet" href="{% static 'src/style.css' %}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    .glass {
-      background: rgba(255, 255, 255, 0.45);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-    }
-
-    .dark .glass {
-      background-color: rgba(15, 23, 42, 1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
 </head>
 
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
@@ -76,24 +64,17 @@
     });
 
     // Theme toggle
-    const themeToggle = document.querySelectorAll(".myToggleBtn");
-
-    themeToggle.forEach((btn) => {
+    document.querySelectorAll(".myToggleBtn").forEach(btn => {
       btn.addEventListener("click", () => {
-        document.documentElement.classList.toggle("dark");
+        document.documentElement.classList.toggle("dark")
 
         const isDark = document.documentElement.classList.contains("dark");
 
         localStorage.setItem("theme", isDark ? "dark" : "light");
 
-        document.querySelectorAll(".theme_icon").forEach((icon) => {
-          if (isDark) {
-            icon.classList.remove("fa-moon", "text-slate-600");
-            icon.classList.add("fa-sun", "text-yellow-400");
-          } else {
-            icon.classList.remove("fa-sun", "text-yellow-400");
-            icon.classList.add("fa-moon", "text-slate-600");
-          }
+        document.querySelectorAll(".theme_icon").forEach(icon => {
+          icon.classList.toggle("fa-moon", !isDark);
+          icon.classList.toggle("fa-sun", isDark);
         });
       });
     });
@@ -101,9 +82,9 @@
     if (localStorage.getItem("theme") === "dark") {
       document.documentElement.classList.add("dark");
 
-      document.querySelectorAll(".theme_icon").forEach((icon) => {
-        icon.classList.remove("fa-moon", "text-slate-600");
-        icon.classList.add("fa-sun", "text-yellow-400");
+      document.querySelectorAll(".theme_icon").forEach(icon => {
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
       });
     }
 
