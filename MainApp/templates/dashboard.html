@@ -4,10 +4,11 @@
 <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 px-6 lg:px-8 pt-6">
   <!-- Left-part -->
   <div class="left-part">
-    <h2 class="text-3xl md:text-4xl xl:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
+    <h2
+      class="text-3xl md:text-4xl xl:text-5xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
       Welcome back, {{user.username}}!👋
     </h2>
-    <p class="mt-2 text-slate-500 dark:text-slate-400 text-base font-medium transition-colors duration-300">
+    <p class="mt-2 text-slate-500 dark:text-slate-400 text-sm font-medium transition-colors duration-300">
       This is your personalized dashboard
     </p>
   </div>
@@ -22,96 +23,99 @@
   </div>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 px-8 py-6">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 px-6 lg:px-8 py-6">
 
   <div
-    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300">
+    class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 px-4 py-4">
     <div class="flex items-center gap-4">
       <div class="w-16 h-16 rounded-2xl bg-indigo-100 flex items-center justify-center shrink-0">
         <i class="fa-solid fa-users text-2xl text-indigo-600"></i>
       </div>
       <div>
         <p class="text-sm font-medium text-slate-500">Total Students</p>
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white mt-1">120</h2>
+        <h2 class="text-4xl xl:text-5xl font-bold text-slate-900 dark:text-white mt-1">120</h2>
       </div>
     </div>
     <div class="mt-3 flex items-center gap-2">
       <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
       <span class="text-green-500 font-semibold text-sm">12</span>
-      <span class="text-sm text-slate-500 mr-6">this month</span>
+      <span class="text-sm text-slate-500">this month</span>
       <canvas id="totalStudentsChart" width="100" height="40"></canvas>
     </div>
   </div>
 
   <div
-    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300">
+    class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 px-4 py-4">
     <div class="flex items-center gap-4">
       <div class="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center shrink-0">
         <i class="fa-solid fa-person text-3xl text-green-600"></i>
       </div>
       <div>
         <p class="text-sm font-medium text-slate-500">Male Students</p>
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white mt-1">70</h2>
+        <h2 class="text-4xl xl:text-5xl font-bold text-slate-900 dark:text-white mt-1">70</h2>
       </div>
     </div>
     <div class="mt-3 flex items-center gap-2">
       <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
       <span class="text-green-500 font-semibold text-sm">8</span>
-      <span class="text-sm text-slate-500 mr-6">this month</span>
+      <span class="text-sm text-slate-500">this month</span>
       <canvas id="maleStudentsChart" width="100" height="40"></canvas>
     </div>
   </div>
 
   <div
-    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300">
+    class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 px-4 py-4">
     <div class="flex items-center gap-4">
       <div class="w-14 h-14 rounded-xl bg-pink-100 flex items-center justify-center shrink-0">
         <i class="fa-solid fa-person-dress text-3xl text-pink-500"></i>
       </div>
       <div>
         <p class="text-sm font-medium text-slate-500">Female Students</p>
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white mt-1">50</h2>
+        <h2 class="text-4xl xl:text-5xl font-bold text-slate-900 dark:text-white mt-1">50</h2>
       </div>
     </div>
     <div class="mt-3 flex items-center gap-2">
       <i class="fa-solid fa-arrow-trend-up text-green-500 text-sm"></i>
       <span class="text-green-500 font-semibold text-sm">4</span>
-      <span class="text-sm text-slate-500 mr-6">this month</span>
+      <span class="text-sm text-slate-500">this month</span>
       <canvas id="femaleStudentsChart" width="100" height="40"></canvas>
     </div>
   </div>
 
   <div
-    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300">
+    class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 px-4 py-4">
     <div class="flex items-center gap-4">
       <div class="w-14 h-14 rounded-xl bg-blue-100   flex items-center justify-center shrink-0">
         <i class="fa-solid fa-book-open text-2xl text-blue-600"></i>
       </div>
       <div>
         <p class="text-sm font-medium text-slate-500">Total Courses</p>
-        <h2 class="text-4xl font-bold text-slate-900 dark:text-white mt-1">6</h2>
+        <h2 class="text-4xl xl:text-5xl font-bold text-slate-900 dark:text-white mt-1">6</h2>
       </div>
     </div>
-    <div class="mt-3 flex items-center justify-between gap-2">
-      <span class="text-sm font-medium text-slate-500 ">No change</span>
+    <div class="mt-3 flex items-center gap-2">
+      <span class="text-sm font-medium text-slate-500">No change</span>
       <canvas id="totalCoursesChart" width="100" height="40"></canvas>
     </div>
   </div>
 
   <div
-    class="col-span-2 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-3 transition-all duration-300 ease-in-out">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-xl font-bold text-slate-800 dark:text-white">
-        Admissions Overview
-      </h2>
+    class="col-span-1 xl:col-span-2 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 transition-all duration-300 hover:shadow-lg">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-xl font-bold text-slate-800 dark:text-white">
+          Admissions Overview
+        </h2>
+      </div>
 
       <select
-        class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white outline-none">
-        <option value="">This Year</option>
-        <option value="Feb">Feb</option>
+        class="w-full sm:w-auto px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none transition">
+        <option>This Year</option>
+        <option>This Month</option>
+        <option>Last 6 Months</option>
       </select>
     </div>
-    <div class="w-80 h-80">
+    <div class="relative w-full h-[320px] md:h-[380px]">
       <canvas id="admissionChart"></canvas>
     </div>
   </div>
@@ -122,7 +126,7 @@
       Student by Course
     </h2>
 
-    <div class="flex items-center gap-5">
+    <div class="flex flex-col items-center gap-6">
 
       <!-- Chart -->
       <div class="shrink-0">
@@ -133,42 +137,44 @@
       <div class="flex-1 w-full space-y-4">
 
         <div class="flex justify-between items-center">
-          <span class="flex items-center text-sm font-medium gap-2">
+          <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full bg-indigo-500"></span>
-            BCA
-          </span>
+            <span>BCA</span>
+          </div>
+
           <span class="font-medium">30%</span>
         </div>
 
-        <div class="flex justify-between items-center">
-          <span class="flex items-center text-sm font-medium gap-2">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-            B.Tech
-          </span>
+            <span>B.Tech</span>
+          </div>
+
           <span class="font-medium">25%</span>
         </div>
 
         <div class="flex justify-between items-center">
-          <span class="flex items-center text-sm font-medium gap-2">
+          <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full bg-green-500"></span>
-            MCA
-          </span>
+            <span>MCA</span>
+          </div>
           <span class="font-medium">20%</span>
         </div>
 
         <div class="flex justify-between items-center">
-          <span class="flex items-center gap-2">
+          <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full bg-pink-500"></span>
-            BBA
-          </span>
+            <span>BBA</span>
+          </div>
           <span class="font-medium">15%</span>
         </div>
 
         <div class="flex justify-between items-center">
-          <span class="flex items-center text-sm font-medium gap-2">
+          <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full bg-orange-400"></span>
-            MBA
-          </span>
+            <span>MBA</span>
+          </div>
           <span class="font-medium">10%</span>
         </div>
 

@@ -37,7 +37,7 @@
       {% include "components/navbar.html" %}
 
       <!-- Main section -->
-      <main class="flex-1 w-full h-screen overflow-y-auto dark:bg-slate-900">
+      <main class="flex-1 w-full h-screen overflow-y-auto bg-white dark:bg-slate-900">
         {% block content %}
         {% endblock %}
       </main>
@@ -50,17 +50,42 @@
   <script>
     // sidebar btn slider
     const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebarOverlay")
     const toggleBtn = document.getElementById("toggleBtn");
     const sidebarTexts = document.querySelectorAll(".sidebar-text");
+    const navItems = document.querySelectorAll(".nav-item");
 
     toggleBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("w-72");
+      if (window.innerWidth < 1024) {
+        sidebar.classList.toggle("-translate-x-full");
+        overlay.classList.toggle("hidden");
+
+        return;
+      }
+
+      sidebar.classList.toggle("w-64");
       sidebar.classList.toggle("w-20");
 
-      sidebarTexts.forEach((text) => {
-        text.classList.toggle("opacity-0");
-        text.classList.toggle("hidden");
+      sidebarTexts.forEach(text => {
+        text.classList.toggle("hidden")
+      })
+      navItems.forEach(item => {
+        item.classList.toggle("justify-center")
       });
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.toggle("-translate-x-full");
+      overlay.classList.toggle("hidden");
+    })
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024) {
+        sidebar.classList.remove("-translate-x-full");
+        overlay.classList.add("hidden");
+      } else {
+        sidebar.classList.add("-translate-x-full")
+      }
     });
 
     // Theme toggle
@@ -102,6 +127,7 @@
 
     currentDate.querySelector("span").textContent = today.toLocaleDateString("en-IN", options)
 
+    //  Cards
     function createMiniChart(id, data, color) {
       new Chart(document.getElementById(id), {
         type: "line",
@@ -186,6 +212,8 @@
       },
 
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
 
         plugins: {
           legend: {
