@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Activity, AddStudent
 
 def login_view(request):
     if request.method == "POST":
@@ -26,7 +27,9 @@ def login_view(request):
 
 @login_required
 def dashboard(request):
-    return render(request, "dashboard.html", {"user": request.user})
+    activitys = Activity.objects.all()[:5]
+    recent_students = AddStudent.objects.order_by()[:5]
+    return render(request, "dashboard.html", {"user": request.user, "activitys": activitys, "recent_student": recent_students})
 
 def logout_view(request):
     logout(request)
