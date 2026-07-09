@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Activity, AddStudent
+from .models import Activity, AddStudent, Student
 
 def login_view(request):
     if request.method == "POST":
@@ -34,3 +34,7 @@ def dashboard(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
+
+def students(request):
+    students = Student.objects.all()
+    return render(request, "student.html")

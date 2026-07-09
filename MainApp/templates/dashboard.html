@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 px-6 lg:px-8 pt-6">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
   <!-- Left-part -->
   <div class="left-part">
     <h2
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 px-6 lg:px-8 py-6">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6  py-6">
 
   <div
     class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 px-4 py-4">
@@ -224,6 +224,7 @@
     </div>
   </div>
 
+  <!-- Recent-Activities -->
   <div
     class="col-span-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-lg border border-slate-200 dark:border-slate-700 p-6">
     <h3 class="text-xl font-semibold mb-5">
@@ -253,6 +254,13 @@
           </p>
           <p class="text-sm text-gray-500">
             {{ activity.created_at|timesince }}ago
+          </p>
+        </div>
+
+        {% empty %}
+        <div>
+          <p class="py-10 text-center text-slate-500">
+            No Activity
           </p>
         </div>
 
@@ -347,9 +355,8 @@
         </tbody>
       </table>
     </div>
-    
 
   </div>
-
 </div>
+
 {% endblock %}
