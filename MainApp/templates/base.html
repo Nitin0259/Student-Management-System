@@ -286,6 +286,37 @@
     });
 
   </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#studentForm').submit(function (e) {
+        let valid = true
+        $(".danger").html("");
+
+        const name = $('#name').val().trim();
+        const email = $('#email').val().trim();
+        const phone = $('#phone').val().trim();
+
+        if (name == "") {
+          $("#nameError").text("Name is required")
+          valid = false
+        }
+        if (email === '' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          $('#emailError').text('Valid email is required');
+          valid = false;
+        }
+        if (phone === '' || !/^\d{10}$/.test(phone)) {
+          $('#phoneError').text('Valid 10-digit phone number is required');
+          valid = false;
+        }
+        if(!valid){
+          e.preventDefault()
+        }
+      })
+    })
+  </script>
 </body>
 
 </html>

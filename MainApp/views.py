@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Activity, AddStudent, Student
+from . forms import StudentForm
 
 def login_view(request):
     if request.method == "POST":
@@ -37,4 +38,30 @@ def logout_view(request):
 
 def students(request):
     students = Student.objects.all()
-    return render(request, "student.html")
+    search = request.GET.get("search")
+    course = request.GET.get("course")
+    status = request.GET.get("status")
+
+    if search:
+        students = students.filter(name__icontains=search)
+    if course:
+        students = students.filter(course=course)
+    if status:
+        students = students.filter(status=status)
+    return render(request, "student.html", {"students":students})
+
+def add_student(request):
+    if request.method == "POST":
+        form = StudentForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("students")
+    else:
+        form = StudentForm()
+    
+    context = {
+        "form": form
+    }
+    
+    return render(request, "add_student.html", context)

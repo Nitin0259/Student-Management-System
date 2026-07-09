@@ -2,7 +2,8 @@
 <div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
 
 <!-- Sidebar -->
-<aside id="sidebar" class="fixed lg:relative top-0 left-0 z-50 h-screen w-64 bg-slate-900 border-r border-slate-800 text-white flex flex-col overflow-hidden transform -translate-x-full lg:translate-x-0 transition-all duration-300 ease-in-out">
+<aside id="sidebar"
+  class="fixed lg:relative top-0 left-0 z-50 h-screen w-64 bg-slate-900 border-r border-slate-800 text-white flex flex-col overflow-hidden transform -translate-x-full lg:translate-x-0 transition-all duration-300 ease-in-out">
 
   <!-- Logo -->
   <div class="h-20 flex items-center px-6 border-b border-slate-800">
@@ -18,18 +19,37 @@
 
   <!-- Navigation -->
   <nav class="flex-1 px-3 py-5 space-y-2 overflow-y-auto">
-    <a href="{% url 'dashboard' %}"
-      class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:scale-[1.02] transition">
-      <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+    <a href="{% url 'dashboard' %}" class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl transition
+      {% if request.path == '/dashboard/' %}
+      bg-gradient-to-r from-indigo-600 to-indigo-500
+      {% else %}
+      hover:scale-[1.02]
+      {% endif %}">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center transition
+      {% if request.path == '/dashboard/' %}
+      bg-white/20
+      {% else %}
+      bg-slate-800 group-hover:bg-indigo-600
+      {% endif %}">
         <i class="fa-solid fa-gauge"></i>
       </div>
       <span class="sidebar-text">Dashboard</span>
     </a>
 
-    <a href="{% url 'students' %}" class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+    <a href="{% url 'students' %}" class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl transition
+      {% if request.path == '/students/' %}
+      bg-gradient-to-r from-indigo-600 to-indigo-500
+      {% else %}
+      hover:scale-[1.02]
+      {% endif %}">
 
       <div
-        class="w-10 h-10 rounded-lg bg-slate-800 group-hover:bg-indigo-600 flex items-center justify-center transition">
+        class="w-10 h-10 rounded-lg flex items-center justify-center transition
+        {% if request.path == '/students/' %}
+        bg-white/20
+        {% else %}
+        bg-slate-800 group-hover:bg-indigo-600
+        {% endif %}">
         <i class="fa-solid fa-user-graduate"></i>
       </div>
 

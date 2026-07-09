@@ -19,6 +19,7 @@ class Activity(models.Model):
     def __str__(self):
         return self.title
 
+# Recently added student
 class AddStudent(models.Model):
     GENDER = [('Male','Male'), ('Female','Female')]
 
@@ -61,3 +62,29 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.roll_no} - {self.name}"
+
+
+# Add student
+class StudentsAdd(models.Model):
+    GENDER = [('Male','Male'), ('Female','Female')]
+    STATUS_CHOICES = [
+        ("Active", "Active"),
+        ("Inactive", "Inactive"),
+    ]
+    COURSES = [('BCA','BCA'),('B.Tech','B.Tech'),('MCA','MCA'),('BBA','BBA'),('MBA','MBA')]
+
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    roll_no = models.CharField(max_length=20, unique=True)
+    photo = models.ImageField(upload_to='students/', blank=True, null=True)
+    gender = models.CharField(max_length=100, choices=GENDER) 
+    courses = models.CharField(max_length=100, choices=COURSES)
+    phone = models.CharField(max_length=12)
+    semester = models.PositiveIntegerField()
+    date_of_birth = models.DateField()
+    admission_date = models.DateField(auto_now_add=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Active")    
+    address = models.TextField()
+
+    def __str__(self):
+        return self.name

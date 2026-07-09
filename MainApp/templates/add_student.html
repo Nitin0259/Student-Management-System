@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Add Student page -->
+<div class="space-y-6 px-2 py-2">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-8">
+        <h2
+            class="text-xl md:text-2xl xl:text-3xl font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
+            Add Student
+        </h2>
+        <form method="post" id="studentForm" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label>Name</label>
+                    {{ form.name }}
+                    <div class="text-red-500 danger" id="nameError"></div>
+                </div>
+                <div>
+                    <label>Roll Number</label>
+                    {{ form.roll_no }}
+                </div>
+                <div>
+                    <label>Email</label>
+                    {{ form.email }}
+                    <div class="text-red-500 danger" id="emailError"></div>
+                </div>
+                <div>
+                    <label>Phone</label>
+                    {{ form.phone }}
+                    <div class="text-red-500 danger" id="phoneError"></div>
+                </div>
+                <div>
+                    <label>Gender</label>
+                    {{ form.gender }}
+                </div>
+                <div>
+                    <label>Course</label>
+                    {{ form.course }}
+                </div>
+                <div>
+                    <label>Semester</label>
+                    {{ form.semester }}
+                    <div class="text-red-500 danger" id="semesterError"></div>
+                </div>
+                <div>
+                    <label>Status</label>
+                    {{ form.status }}
+                </div>
+                <div>
+                    <label>Date of birth</label>
+                    {{ form.date_of_birth }}
+                    <div class="text-red-500 danger" id="nameError"></div>
+                </div>
+                <div>
+                    <label>Admission Date</label>
+                    {{ form.admission_date }}
+                </div>
+                <div class="md:col-span-2">
+                    <label>Address</label>
+                    {{ form.address }}
+                    <div class="text-red-500 danger" id="nameError"></div>
+                </div>
+                <div class="md:col-span-2">
+                    <label>Photo</label>
+                    {{ form.photo }}
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-end gap-4">
+                <button type="reset" class="px-6 py-3 rounded-xl bg-slate-200">Reset</button>
+                <button type="submit"
+                    class="px-6 py-3 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
