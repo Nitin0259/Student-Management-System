@@ -36,6 +36,7 @@ def logout_view(request):
     logout(request)
     return redirect("login")
 
+# Filter function
 def students(request):
     students = Student.objects.all()
     search = request.GET.get("search")
@@ -50,6 +51,7 @@ def students(request):
         students = students.filter(status=status)
     return render(request, "student.html", {"students":students})
 
+# Add students on my management
 def add_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST, request.FILES)

@@ -46,30 +46,6 @@ class Student(models.Model):
         ("Active", "Active"),
         ("Inactive", "Inactive"),
     ]
-    COURSES = [('BCA','BCA'),('B.Tech','B.Tech'),('MCA','MCA'),('BBA','BBA'),('MBA','MBA')]
-
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    roll_no = models.CharField(max_length=20, unique=True)
-    photo = models.ImageField(upload_to='students/', blank=True, null=True)
-    gender = models.CharField(max_length=100, choices=GENDER) 
-    courses = models.CharField(max_length=100, choices=COURSES)
-    phone = models.CharField(max_length=12)
-    semester = models.PositiveIntegerField()
-    date_of_birth = models.DateField()
-    admission_date = models.DateField(auto_now_add=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Active")
-
-    def __str__(self):
-        return f"{self.roll_no} - {self.name}"
-
-
-# Add student
-class StudentsAdd(models.Model):
-    STATUS_CHOICES = [
-        ("Active", "Active"),
-        ("Inactive", "Inactive"),
-    ]
     YEAR_CHOICES = [
         ('1st Year', '1st Year'),
         ('2nd Year', '2nd Year'),
@@ -79,16 +55,35 @@ class StudentsAdd(models.Model):
     COURSES = [('BCA','BCA'),('B.Tech','B.Tech'),('MCA','MCA'),('BBA','BBA'),('MBA','MBA')]
 
     name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
+    email = models.EmailField()
+
     student_id = models.CharField(max_length=20, unique=True)
-    photo = models.ImageField(upload_to='students/', blank=True, null=True) 
-    courses = models.CharField(max_length=100, choices=COURSES)
+
+    photo = models.ImageField(upload_to="students/", blank=True, null=True)
+
+    gender = models.CharField(max_length=10, choices=GENDER)
+
+    courses = models.CharField(max_length=50, choices=COURSES)
+
     phone = models.CharField(max_length=12)
-    year = models.CharField(max_length=20, choices=YEAR_CHOICES,default="1st Year")
+
+    year = models.CharField(
+        max_length=20,
+        choices=YEAR_CHOICES,
+        default="1st Year"
+    )
+
     date_of_birth = models.DateField()
+
     admission_date = models.DateField(auto_now_add=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Active")    
-    address = models.TextField()
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="Active"
+    )
+
+    address = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.roll_no} - {self.name}"
