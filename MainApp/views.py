@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Activity, AddStudent, Student
+from .models import Activity, Student
 from . forms import StudentForm
 
 def login_view(request):
@@ -29,8 +29,8 @@ def login_view(request):
 @login_required
 def dashboard(request):
     activitys = Activity.objects.all()[:5]
-    recent_students = AddStudent.objects.order_by()[:5]
-    return render(request, "dashboard.html", {"user": request.user, "activitys": activitys, "recent_student": recent_students})
+    recent_students = Student.objects.order_by("-created_at")[:5]
+    return render(request, "dashboard.html", {"user": request.user, "activitys": activitys, "recent_students": recent_students})
 
 def logout_view(request):
     logout(request)
@@ -46,7 +46,7 @@ def students(request):
     if search:
         students = students.filter(name__icontains=search)
     if course:
-        students = students.filter(course=course)
+        students = students.filter(courses=course)
     if status:
         students = students.filter(status=status)
     return render(request, "student.html", {"students":students})
@@ -63,3 +63,5 @@ def add_student(request):
         form = StudentForm()
     
     return render(request, "add_student.html", {"form":form})
+
+
