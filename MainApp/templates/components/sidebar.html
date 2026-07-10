@@ -57,7 +57,12 @@
 
     </a>
 
-    <a href="#" class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+    <a href="{% url 'add_student' %}" class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl transition 
+    {% if request.path == '/add_student/' %}
+    bg-gradient-to-r from-indigo-600 to-indigo-500
+    {% else %}
+    hover:scale-[1.02]
+    {% endif %}">
 
       <div
         class="w-10 h-10 rounded-lg bg-slate-800 group-hover:bg-green-600 flex items-center justify-center transition">

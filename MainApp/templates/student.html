@@ -11,7 +11,7 @@
                 all enrolled students</p>
         </div>
 
-        <a href="{}"
+        <a href="{% url 'add_student' %}"
             class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl shadow transition">
             <i class="fa-solid fa-plus"></i>
             Add Student
@@ -74,10 +74,10 @@
                 <tr>
                     <th class="px-6 py-4 text-left">Photo</th>
                     <th class="px-6 py-4 text-left">Name</th>
-                    <th class="px-6 py-4 text-left">Roll no.</th>
+                    <th class="px-6 py-4 text-left">ID</th>
                     <th class="px-6 py-4 text-left">Course</th>
                     <th class="px-6 py-4 text-left">Phone</th>
-                    <th class="px-6 py-4 text-left">Status</th>
+                    <th class="px-6 py-4 text-left">Year</th>
                     <th class="px-6 py-4 text-center">Action</th>
                 </tr>
             </thead>

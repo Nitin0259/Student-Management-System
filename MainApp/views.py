@@ -60,8 +60,4 @@ def add_student(request):
     else:
         form = StudentForm()
     
-    context = {
-        "form": form
-    }
-    
-    return render(request, "add_student.html", context)
+    return render(request, "add_student.html", {"form":form})
