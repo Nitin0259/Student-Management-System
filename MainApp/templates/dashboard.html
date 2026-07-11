@@ -201,22 +201,26 @@
 
     <div class="space-y-8">
 
-      <a href="{% url 'add_student' %}" class="inline-flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow transition">
+      <a href="{% url 'add_student' %}"
+        class="inline-flex w-full items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow transition">
         <i class="fa-solid fa-plus"></i>
         Add Student
       </a>
 
-      <a href="{% url 'students' %}" class="inline-flex items-center gap-2 px-5 py-3 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-xl shadow transition">
+      <a href="{% url 'students' %}"
+        class="inline-flex w-full items-center gap-2 px-5 py-3 bg-blue-100 text-blue-700 hover:bg-blue-200 rounded-xl shadow transition">
         <i class="fa-solid fa-users"></i>
         View Students
       </a>
 
-      <a href="#" class="inline-flex items-center gap-2 px-5 py-3 bg-green-100 text-green-700 hover:bg-green-200 rounded-xl shadow transition">
+      <a href="#"
+        class="inline-flex w-full items-center gap-2 px-5 py-3 bg-green-100 text-green-700 hover:bg-green-200 rounded-xl shadow transition">
         <i class="fa-solid fa-magnifying-glass"></i>
         Search Student
       </a>
 
-      <a href="#" class="inline-flex items-center gap-2 px-5 py-3 bg-orange-100 text-orange-700 hover:bg-orange-200 rounded-xl shadow transition">
+      <a href="#"
+        class="inline-flex w-full items-center gap-2 px-5 py-3 bg-orange-100 text-orange-700 hover:bg-orange-200 rounded-xl shadow transition">
         <i class="fa-solid fa-file-arrow-down"></i>
         Generate Report
       </a>
@@ -226,47 +230,45 @@
 
   <!-- Recent-Activities -->
   <div
-    class="col-span-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-lg border border-slate-200 dark:border-slate-700 p-6">
+    class="col-span-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
+
     <h3 class="text-xl font-semibold mb-5">
-      Recent Activites
+      Recent Activities
     </h3>
 
     <div class="space-y-6">
+
       {% for activity in activitys %}
 
       <div class="flex gap-3">
-        <div class="w-3 h-3 mt-2 rounded-full 
-        {% if activity.color == 'indigo' %}
-        bg-indigo-500 
-        {% elif activity.color == 'blue' %}
-        bg-blue-500
-        {% elif activity.color == 'green' %}
-        bg-green-500
-        {% elif activity.color == 'red' %}
-        bg-red-500
-        {% else %}
-        bg-orange-500
-        {% endif %}"></div>
 
-        <div>
-          <p class="font-medium">
-            {{ activity.title }}
-          </p>
-          <p class="text-sm text-gray-500">
-            {{ activity.created_at|timesince }}ago
-          </p>
+        <div class="w-3 h-3 mt-2 rounded-full
+                {% if activity.color == 'green' %}bg-green-500
+                {% elif activity.color == 'blue' %}bg-blue-500
+                {% elif activity.color == 'red' %}bg-red-500
+                {% else %}bg-indigo-500
+                {% endif %}">
         </div>
 
-        {% empty %}
         <div>
-          <p class="py-10 text-center text-slate-500">
-            No Activity
+          <p class="font-medium">{{ activity.title }}</p>
+          <p class="text-sm text-gray-500">
+            {{ activity.created_at|timesince }} ago
           </p>
         </div>
 
       </div>
+
+      {% empty %}
+
+      <p class="text-center text-slate-500">
+        No Activity
+      </p>
+
       {% endfor %}
+
     </div>
+
   </div>
 
   <!-- Recently Added student -->
@@ -346,17 +348,15 @@
           {% empty %}
 
           <tr>
-            <td colspan="9" class="py-10 text-center text-slate-500">
+            <td colspan="6" class="py-10 text-center text-slate-500">
               No students available.
             </td>
           </tr>
           {% endfor %}
-
         </tbody>
       </table>
     </div>
 
   </div>
 </div>
-
 {% endblock %}
