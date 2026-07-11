@@ -59,9 +59,22 @@ def add_student(request):
         if form.is_valid():
             student = form.save()
 
+            # Add studnet
             Activity.objects.create(
                 title=f"{student.name} was added",
                 color="green",
+                user=request.user
+            )
+            # Edit student
+            Activity.objects.create(
+                title=f"{student.name} was updated",
+                color="blue",
+                user=request.user
+            )
+            # Delete student
+            Activity.objects.create(
+                title=f"{student.name} was deleted",
+                color="red",
                 user=request.user
             )
             return redirect("students")
