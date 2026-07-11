@@ -65,7 +65,7 @@ def add_student(request):
                 color="green",
                 user=request.user
             )
-            # Edit student
+             # Edit student
             Activity.objects.create(
                 title=f"{student.name} was updated",
                 color="blue",
@@ -78,11 +78,52 @@ def add_student(request):
                 user=request.user
             )
             return redirect("students")
-        else:
-            print(form.errors)
     else:
         form = StudentForm()
     
     return render(request, "add_student.html", {"form":form})
 
+# Views student
 
+def view_student(request,id):
+    student = Student.objects.get(id=id)
+    return render(request, "view_student.html", {"student":student})
+
+# Edit student
+
+def edit_student(request, id):
+    student = Student.objects.get(id=id)
+
+    if request.method == "POST":
+        form = StudentForm(request.POST, request.FILES, instance=student)
+
+        if form.is_valid():
+            form.save()
+            
+            # Edit student details
+            Activity.objects.create(
+                title=f"{student.name} was updated",
+                color="blue",
+                user=request.user
+            )
+
+            return redirect("students")
+    else:
+        form = StudentForm(instance=student)
+
+    return render(request, "edit_student.html", {"form":form, "student":student})
+
+def delete_student(request, id):
+    student = Student.objects.get(id=id)
+
+    if request.method == "POST":
+        # Delete student
+        Activity.objects.create(
+            title=f"{student.name} was deleted",
+            color="red",
+            user=request.user
+        )
+
+        student.delete
+
+    return redirect("students")

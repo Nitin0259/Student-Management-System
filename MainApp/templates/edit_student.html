@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+        <div>
+            <h1 class="text-3xl font-bold text-slate-800 dark:text-white">Edit Student</h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-1">Update student informantion.</p>
+        </div>
+
+        <a href="{% url 'students' %}"
+            class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white transition">
+            <i class="fa-solid fa-arrow-left mr-2"></i>
+            Back
+        </a>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Name -->
+                    <div>
+                        <label class="block mb-2 font-semibold">Student Name</label>
+                        {{ form.name }}
+                    </div>
+
+                    <!-- student-id -->
+                    <div>
+                        <label class="block mb-2 font-semibold">Student-ID</label>
+                        {{ form.student_id }}
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label class="block mb-2 font-semibold">Email</label>
+                        {{ form.email }}
+                        <div class="text-red-500 danger" id="emailError"></div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label class="phone">Phone</label>
+                        {{ form.phone }}
+                        <div class="text-red-500 danger" id="phoneError"></div>
+                    </div>
+
+                    <!-- Year -->
+                    <div>
+                        <label>Year</label>
+                        {{ form.year }}
+                    </div>
+
+                    <!-- Course -->
+                    <div>
+                        <label class="block mb-2 font-semibold">Course</label>
+                        {{ form.courses }}
+                    </div>
+
+                    <!-- Date of birth -->
+                    <div>
+                        <label class="block mb-2 font-semibold">Date of Birth</label>
+                        {{ form.date_of_birth }}
+                    </div>
+
+                    <!-- Status -->
+                    <div>
+                        <label class="block mb-2 font-semibold">Status</label>
+                        {{ form.status }}
+                    </div>
+
+                    <!-- Address -->
+                    <div class="md:col-span-2">
+                        <label class="block mb-2 font-semibold">Address</label>
+                        {{ form.address }}
+                    </div>
+
+                    <!-- Photo -->
+                    <div class="md-8">
+                        <label class="block mb-2 font-semibold">Student Photo</label>
+                        {% if student.photo %}
+                        <img src="{{ student.photo.url }}" class="w-32 h-32 rounded-xl object-cover border mb-4">
+                        {% endif %}
+                        {{ form.photo }}
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="border-t border-slate-200 dark:border-slate-700 p-6 flex gap-4">
+                    <button class="px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white">
+                        <i class="fa-solid fa-floppy-disk mr-2"></i>
+                        Update Student
+                    </button>
+                    <a href="{% url 'students' %}"
+                        class="px-8 py-3 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600">
+                        Cancel
+                    </a>
+
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+{% endblock %}

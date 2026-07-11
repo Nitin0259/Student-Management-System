@@ -284,7 +284,6 @@
         }
       }
     });
-
   </script>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -311,10 +310,36 @@
           $('#phoneError').text('Valid 10-digit phone number is required');
           valid = false;
         }
-        if(!valid){
+        if (!valid) {
           e.preventDefault()
         }
       })
+    })
+  </script>
+
+  <!-- Delete student pop -->
+  <script>
+    function openDeleteModal(studentId, studentName) {
+      document.getElementById("deleteModel").classList.remove("hidden");
+      document.getElementById("deleteModel").classList.add("flex")
+
+      document.getElementById("studentName").innerHTML = studentName;
+      document.getElementById("deleteForm").action = "/student/delete/" + studentId + "/"
+
+    }
+
+    function closeDeleteModal() {
+
+      document.getElementById("deleteModal").classList.add("hidden");
+      document.getElementById("deleteModal").classList.remove("flex");
+
+    }
+
+    // Close when clicking outside the modal
+    document.getElementById("deleteModel").addEventListener("click", function(e){
+      if (e.target == this) {
+        closeDeleteModal();
+      }
     })
   </script>
 </body>
