@@ -57,8 +57,16 @@ def add_student(request):
         form = StudentForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
+            student = form.save()
+
+            Activity.objects.create(
+                title=f"{student.name} was added",
+                color="green",
+                user=request.user
+            )
             return redirect("students")
+        else:
+            print(form.errors)
     else:
         form = StudentForm()
     
