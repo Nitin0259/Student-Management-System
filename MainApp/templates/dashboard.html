@@ -333,15 +333,17 @@
                   <i class="fa-solid fa-eye"></i>
                 </a>
 
-                <a href="#"
+                <a href="{% url 'edit_student' student.id %}"
                   class="w-9 h-9 rounded-lg bg-green-100 text-green-600 flex items-center justify-center hover:bg-green-200">
                   <i class="fa-solid fa-pen"></i>
                 </a>
 
-                <a href="#"
-                  class="w-9 h-9 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200">
+                <button onclick="openDeleteModal('{{ student.id }}', '{{ student.name }}')"
+                  class="w-9 h-9 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition">
+
                   <i class="fa-solid fa-trash"></i>
-                </a>
+
+                </button>
               </div>
             </td>
           </tr>

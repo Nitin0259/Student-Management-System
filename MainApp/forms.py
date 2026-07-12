@@ -20,6 +20,7 @@ class StudentForm(forms.ModelForm):
             "phone": forms.TextInput(attrs={
                 "class":"w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none",
                 "placeholder":"Enter phone number"
+
             }),
             "courses": forms.Select(attrs={
                 "class":"w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none"

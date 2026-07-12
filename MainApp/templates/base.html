@@ -323,15 +323,15 @@
       document.getElementById("deleteModel").classList.remove("hidden");
       document.getElementById("deleteModel").classList.add("flex")
 
-      document.getElementById("studentName").innerHTML = studentName;
-      document.getElementById("deleteForm").action = "/student/delete/" + studentId + "/"
+      document.getElementById("studentName").textContent = studentName;
+      document.getElementById("deleteForm").action =
+    "/student/delete/" + studentId + "/";
 
     }
 
     function closeDeleteModal() {
-
-      document.getElementById("deleteModal").classList.add("hidden");
-      document.getElementById("deleteModal").classList.remove("flex");
+      document.getElementById("deleteModel").classList.remove("flex");
+      document.getElementById("deleteModel").classList.add("hidden");
 
     }
 
@@ -342,6 +342,22 @@
       }
     })
   </script>
+
+  <!-- Search student -->
+   <script>
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("keyup", function() {
+      fetch(`/search/?q=${this.value}`)
+      .then(response => response.text())
+      .then(html => {
+        const praser = new DOMParser()
+        const doc = praser.parseFromString(html, "text/html");
+
+        document.getElementById("studentTable").innerHTML = 
+        doc.getElementById("studentTable").innerHTML;
+      })
+    })
+   </script>
 </body>
 
 </html>

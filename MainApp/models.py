@@ -42,7 +42,7 @@ class Student(models.Model):
 
     courses = models.CharField(max_length=50, choices=COURSES)
 
-    phone = models.CharField(max_length=12)
+    phone = models.CharField(max_length=10)
 
     year = models.CharField(
         max_length=20,

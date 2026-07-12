@@ -87,7 +87,14 @@
                 {% for student in students %}
                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-700 transition">
                     <td class="px-6 py-4">
-                        <img src="{{ student.photo }}" alt="image" class="w-11 h-11 rounded-full object-cover">
+                        {% if student.photo %}
+                        <img src="{{ student.photo.url }}" alt="{{ student.name }}"
+                            class="w-11 h-11 rounded-full object-cover">
+                        {% else %}
+                        <div class="w-11 h-11 rounded-full bg-slate-200 flex items-center justify-center">
+                            <i class="fa-solid fa-user text-slate-500"></i>
+                        </div>
+                        {% endif %}
                     </td>
                     <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">{{ student.name }}</td>
                     <td class="px-6 py-4">{{ student.student_id }}</td>
@@ -160,7 +167,7 @@
 
         <!-- Buttons -->
         <div class="flex justify-center gap-4 mt-8">
-            <button onclick="closeDeleteModal"
+            <button type="button" onclick="closeDeleteModal()"
                 class="px-6 py-3 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition">Cancel</button>
 
             <form id="deleteForm" method="post">

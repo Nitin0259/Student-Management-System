@@ -78,10 +78,20 @@
 
     </a>
 
-    <a href="#" class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-800 transition">
+    <a href="{% url 'search_student' %}" class="nav-item group flex items-center gap-4 px-4 py-3 rounded-xl transition
+    {% if request.path == '/search/' %}
+    bg-gradient-to-r from-indigo-600 to-indigo-500
+    {% else %}
+    hover:scale-[1.02] 
+    {% endif %}">
 
       <div
-        class="w-10 h-10 rounded-lg bg-slate-800 group-hover:bg-cyan-600 flex items-center justify-center transition">
+        class="w-10 h-10 rounded-lg flex items-center justify-center transition
+        {% if request.path == '/search/' %}
+        bg-white/20
+        {% else %}
+        bg-slate-800 group-hover:bg-indigo-600
+        {% endif %}">
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
 
