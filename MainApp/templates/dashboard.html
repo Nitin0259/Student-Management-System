@@ -306,7 +306,13 @@
               {{ student.student_id }}
             </td>
             <td class="px-6 py-4">
-              <img src="{{ student.photo }}" alt="image" class="w-11 h-11 rounded-full object-cover">
+              {% if student.photo %}
+              <img src="{{ student.photo.url }}" alt="{{ student.name }}" class="w-11 h-11 rounded-full object-cover">
+              {% else %}
+              <div class="w-11 h-11 rounded-full bg-slate-200 flex items-center justify-center">
+                <i class="fa-solid fa-user text-slate-500"></i>
+              </div>
+              {% endif %}
             </td>
             <td class="px-6 py-4 font-medium">
               {{ student.name }}
@@ -347,6 +353,8 @@
               </div>
             </td>
           </tr>
+
+
           {% empty %}
 
           <tr>
@@ -355,6 +363,22 @@
             </td>
           </tr>
           {% endfor %}
+
+          <!-- View All Button -->
+          <tr>
+            <td colspan="9" class="px-6 py-5 text-center border-t border-slate-200 dark:border-slate-700">
+
+              <a href="{% url 'students' %}"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow transition">
+
+                <i class="fa-solid fa-users"></i>
+
+                View All Students
+
+              </a>
+
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

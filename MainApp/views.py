@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Activity, Student
 from . forms import StudentForm
-from django.db.models import Q
+from django.db.models import Q, Count
 
 def login_view(request):
     if request.method == "POST":
@@ -43,6 +43,7 @@ def students(request):
     search = request.GET.get("search")
     course = request.GET.get("course")
     status = request.GET.get("status")
+    
 
     if search:
         students = students.filter(name__icontains=search)
@@ -129,17 +130,3 @@ def delete_student(request, id):
 
     return redirect("students")
 
-# Search student
-def search_student(request):
-    query = request.GET.get("q", "")
-    students = Student.objects.all()
-
-    if query:
-        students = students.filter(
-            Q(name_icontains=query) |
-            Q(student_id_icontains=query) |
-            Q(email_icontains=query) |
-            Q(phone_icontains=query) |
-            Q(courses__icontains=query)
-        )
-    return render(request, "search_student.html", {"query":query, "students":students})

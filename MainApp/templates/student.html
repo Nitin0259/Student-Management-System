@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- Student-page -->
-<div class="space-y-6 px-2 py-2">
+<div class="space-y-6">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
             <h2
@@ -77,6 +77,7 @@
                     <th class="px-6 py-4 text-left">ID</th>
                     <th class="px-6 py-4 text-left">Course</th>
                     <th class="px-6 py-4 text-left">Phone</th>
+                    <th class="px-6 py-4 text-left">Email</th>
                     <th class="px-6 py-4 text-left">Year</th>
                     <th class="px-6 py-4 text-left">Status</th>
                     <th class="px-6 py-4 text-center">Action</th>
@@ -100,6 +101,7 @@
                     <td class="px-6 py-4">{{ student.student_id }}</td>
                     <td class="px-6 py-4">{{ student.courses }}</td>
                     <td class="px-6 py-4">{{ student.phone }}</td>
+                    <td class="px-6 py-4">{{ student.email }}</td>
                     <td class="px-6 py-4">{{ student.year }}</td>
                     <td class="px-6 py-4">
                         <span class="px-3 py-1 rounded-full text-sm font-medium

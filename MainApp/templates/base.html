@@ -37,7 +37,7 @@
       {% include "components/navbar.html" %}
 
       <!-- Main section -->
-      <main class="flex-1 w-full h-screen px-6  py-8 overflow-y-auto bg-white dark:bg-slate-900">
+      <main class="flex-1 w-full h-screen px-6 py-8 overflow-y-auto bg-white dark:bg-slate-900">
         {% block content %}
         {% endblock %}
       </main>
@@ -342,22 +342,6 @@
       }
     })
   </script>
-
-  <!-- Search student -->
-   <script>
-    const searchInput = document.getElementById("searchInput");
-    searchInput.addEventListener("keyup", function() {
-      fetch(`/search/?q=${this.value}`)
-      .then(response => response.text())
-      .then(html => {
-        const praser = new DOMParser()
-        const doc = praser.parseFromString(html, "text/html");
-
-        document.getElementById("studentTable").innerHTML = 
-        doc.getElementById("studentTable").innerHTML;
-      })
-    })
-   </script>
 </body>
 
 </html>
