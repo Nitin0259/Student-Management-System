@@ -345,74 +345,54 @@
 
   <script>
 
-    const admissionLabels = admissions.map(item => {
-      const date = new Date(item.month)
 
-      return date.toLocaleString("default", {
+    const admissionLabels = JSON.parse(
+      document.getElementById("admission-labels").textContent
+    );
 
-        month: 'short'
-      })
-    })
+    const admissionValues = JSON.parse(
+      document.getElementById("admission-values").textContent
+    );
 
-    const admissionTotals = admissions.map(item => item.total);
+    const courseLabels = JSON.parse(
+      document.getElementById("course-labels").textContent
+    );
+
+    const courseValues = JSON.parse(
+      document.getElementById("course-values").textContent
+    );
 
     new Chart(document.getElementById("reportChart"), {
-
       type: "line",
-
       data: {
-
         labels: admissionLabels,
-
         datasets: [{
-
           label: "Admissions",
-
-          data: admissionTotals,
-
+          data: admissionValues,
           borderColor: "#4f46e5",
-
           backgroundColor: "rgba(79,70,229,.2)",
-
           fill: true,
-
           tension: .4
-
         }]
       }
     });
 
     // Course chart
-    const courseLabels = courses.map(item => item.courses);
-
-    const courseTotals = courses.map(item => item.total);
-
     new Chart(document.getElementById("courseReport"), {
-
       type: "doughnut",
-
       data: {
-
         labels: courseLabels,
-
         datasets: [{
-
-          data: courseTotals,
-
+          data: courseValues,
           backgroundColor: [
-
-            "#4f46e5",
+            "#6366f1",
             "#3b82f6",
-            "#10b981",
+            "#22c55e",
             "#f59e0b",
             "#ec4899"
-
           ]
-
         }]
-
       }
-
     });
 
   </script>

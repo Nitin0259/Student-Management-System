@@ -4,9 +4,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Activity, Student
-from . forms import StudentForm
+from .forms import StudentForm
 from django.db.models import Q, Count
 from django.db.models.functions import TruncMonth
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from openpyxl import Workbook
 
 def login_view(request):
     if request.method == "POST":
@@ -138,12 +141,6 @@ def report_student(request):
     active_student = students.filter(status="Active").count()
     inactive_student = students.filter(status="Inactive").count()
 
-    course_data = (
-        Student.objects
-        .values("courses")
-        .annotate(total=Count("id"))
-        .order_by("courses")
-    )
 
     # Admission-chart
 
@@ -155,6 +152,16 @@ def report_student(request):
         .order_by("month")
     ) 
 
+    admission_labels = [
+        item["month"].strftime("%b" "%y")
+        for item in admission_data
+    ]
+
+    admission_values = [
+        item["total"]
+        for item in admission_data
+    ]
+
     # Courses_chart
     course_data = (
         Student.objects
@@ -163,15 +170,90 @@ def report_student(request):
         .order_by("courses")
     )
 
+    course_labels = [
+        item["courses"]
+        for item in course_data
+    ]
+
+    course_values = [
+        item["total"]
+        for item in course_data
+    ]
+
     context = {
         "students": students,
         "total_student": total_student,
         "active_student": active_student,
         "inactive_student": inactive_student,
-        "course_data": course_data,
-        "admission_data": admission_data,
-        "course_data": course_data
+        
+        "admission_values":admission_values,
+        "admission_labels": admission_labels,
+    
+        "course_labels": course_labels,
+        "course_values": course_values
     }
 
     return render(request,"reports.html", context)
     
+# Export-pdf
+def export_pdf(request):
+    response = HttpResponse(content_type="application/pdf")
+    response["Content-Disposition"] = 'attachment; filename="students_report.pdf"'
+
+    p = canvas.Canvas(response)
+
+    p.setFont("Helvetica-Bold", 18)
+    p.drawString(180, 800, "Students Report")
+
+    y = 760
+
+    students = Student.objects.all()
+
+    for student in students:
+        p.drawString(
+            40,
+            y,
+            f"{student.student_id} | {student.name} | {student.courses} | {student.year} | {student.status}"
+        )
+        y -= 20
+
+    p.save()
+
+    return response
+
+def export_Excel(request):
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "Students"
+
+    sheet.append([
+        "student ID",
+        "Name",
+        "Course",
+        "Year",
+        "Email",
+        "Phone",
+        "Status"
+    ])
+
+    students = Student.objects.all()
+
+    for s in students:
+        sheet.append([
+           s.student_id,
+            s.name,
+            s.courses,
+            s.year,
+            s.email,
+            s.phone,
+            s.status
+        ])
+
+    response = HttpResponse(
+        content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+    response["Content-Disposition"] = 'attachment; filename="students.xlsx"'
+
+    workbook.save(response)
+
+    return response

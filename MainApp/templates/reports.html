@@ -11,19 +11,22 @@
         <div class="flex gap-3">
 
             <!-- Export-PDF -->
-            <button class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition">
+            <a href="{% url 'export_pdf' %}"
+                class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium">
+
                 <i class="fa-solid fa-file-pdf mr-2"></i>
                 Export PDF
-            </button>
+            </a>
 
             <!-- Export Excel -->
-            <button class="px-5 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium transition">
+            <a href="{% url 'export_Excel' %}" class="px-5 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white">
+
                 <i class="fa-solid fa-file-excel mr-2"></i>
                 Export Excel
-            </button>
+            </a>
 
             <!-- Print -->
-            <button class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-medium transition">
+            <button onclick="window.print()" class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-medium transition">
                 <i class="fa-solid fa-print mr-2"></i>
                 Print
             </button>
@@ -39,7 +42,7 @@
             <div class="flex justify-between items-center">
                 <div>
                     <p class="tect-slate-500">Total Students</p>
-                    <h2 class="text-4xl font-bold mt-2">{{ total_students }}</h2>
+                    <h2 class="text-4xl font-bold mt-2">{{ total_student }}</h2>
                 </div>
 
                 <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center">
@@ -57,7 +60,7 @@
                     </p>
 
                     <h2 class="text-4xl font-bold mt-2">
-                        {{ active_students }}
+                        {{ active_student }}
                     </h2>
                 </div>
 
@@ -78,7 +81,7 @@
                     </p>
 
                     <h2 class="text-4xl font-bold mt-2">
-                        {{ inactive_students }}
+                        {{ inactive_student }}
                     </h2>
                 </div>
 
@@ -159,7 +162,7 @@
                 Admissions Overview
             </h2>
 
-            <canvas id="reportChart"></canvas>
+            <canvas id="reportChart" width="280px" height="260px"></canvas>
 
         </div>
 
@@ -169,27 +172,19 @@
                 Students By Course
             </h2>
 
-            <canvas id="courseReport"></canvas>
-
+            <div class="w-[470px] h-[470px]">
+                <canvas id="courseReport"></canvas>
+            </div>
         </div>
     </div>
 
     <!-- Convert Django data into JSON -->
-    <!-- {{ admission_data|json_script:"admission-data" }}
-    {{ course_data|json_script:"course-data" }} -->
+    {{ admission_labels|json_script:"admission-labels" }}
+    {{ admission_values|json_script:"admission-values" }}
 
-    <!-- Chart.js -->
-    <!-- <script>
+    {{ course_labels|json_script:"course-labels" }}
+    {{ course_values|json_script:"course-values" }}
 
-        const admissions = JSON.parse(
-            document.getElementById("admission-data").textContent
-        );
-
-        const courses = JSON.parse(
-            document.getElementById("course-data").textContent
-        );
-
-    </script> -->
 
     <!-- Report-table -->
     <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm overflow-hidden">
@@ -228,11 +223,12 @@
                         <td>{{ student.year }}</td>
 
                         <td>
-                            <span class="px-3 py-1 rounded-full bg-green-100 text-green-600">
-
-                                {{ student.status }}
-
-                            </span>
+                            <span class="px-3 py-1 rounded-full text-sm font-medium
+                        {% if student.status == 'Active' %}
+                        bg-green-100 text-green-600
+                        {% else %}
+                        bg-red-100 text-red-600
+                        {% endif %}">{{ student.status }}</span>
                         </td>
 
                         <td>{{ student.created_at }}</td>
