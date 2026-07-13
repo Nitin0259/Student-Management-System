@@ -325,7 +325,7 @@
 
       document.getElementById("studentName").textContent = studentName;
       document.getElementById("deleteForm").action =
-    "/student/delete/" + studentId + "/";
+        "/student/delete/" + studentId + "/";
 
     }
 
@@ -336,12 +336,87 @@
     }
 
     // Close when clicking outside the modal
-    document.getElementById("deleteModel").addEventListener("click", function(e){
+    document.getElementById("deleteModel").addEventListener("click", function (e) {
       if (e.target == this) {
         closeDeleteModal();
       }
     })
   </script>
+
+  <script>
+
+    const admissionLabels = admissions.map(item => {
+      const date = new Date(item.month)
+
+      return date.toLocaleString("default", {
+
+        month: 'short'
+      })
+    })
+
+    const admissionTotals = admissions.map(item => item.total);
+
+    new Chart(document.getElementById("reportChart"), {
+
+      type: "line",
+
+      data: {
+
+        labels: admissionLabels,
+
+        datasets: [{
+
+          label: "Admissions",
+
+          data: admissionTotals,
+
+          borderColor: "#4f46e5",
+
+          backgroundColor: "rgba(79,70,229,.2)",
+
+          fill: true,
+
+          tension: .4
+
+        }]
+      }
+    });
+
+    // Course chart
+    const courseLabels = courses.map(item => item.courses);
+
+    const courseTotals = courses.map(item => item.total);
+
+    new Chart(document.getElementById("courseReport"), {
+
+      type: "doughnut",
+
+      data: {
+
+        labels: courseLabels,
+
+        datasets: [{
+
+          data: courseTotals,
+
+          backgroundColor: [
+
+            "#4f46e5",
+            "#3b82f6",
+            "#10b981",
+            "#f59e0b",
+            "#ec4899"
+
+          ]
+
+        }]
+
+      }
+
+    });
+
+  </script>
+
 </body>
 
 </html>

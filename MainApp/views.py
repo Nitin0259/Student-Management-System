@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Activity, Student
 from . forms import StudentForm
 from django.db.models import Q, Count
+from django.db.models.functions import TruncMonth
 
 def login_view(request):
     if request.method == "POST":
@@ -130,3 +131,47 @@ def delete_student(request, id):
 
     return redirect("students")
 
+def report_student(request):
+    students = Student.objects.all()
+
+    total_student = students.count()
+    active_student = students.filter(status="Active").count()
+    inactive_student = students.filter(status="Inactive").count()
+
+    course_data = (
+        Student.objects
+        .values("courses")
+        .annotate(total=Count("id"))
+        .order_by("courses")
+    )
+
+    # Admission-chart
+
+    admission_data = (
+        Student.objects
+        .annotate(month=TruncMonth("created_at"))
+        .values("month")
+        .annotate(total=Count("id"))
+        .order_by("month")
+    ) 
+
+    # Courses_chart
+    course_data = (
+        Student.objects
+        .values("courses")
+        .annotate(total=Count("id"))
+        .order_by("courses")
+    )
+
+    context = {
+        "students": students,
+        "total_student": total_student,
+        "active_student": active_student,
+        "inactive_student": inactive_student,
+        "course_data": course_data,
+        "admission_data": admission_data,
+        "course_data": course_data
+    }
+
+    return render(request,"reports.html", context)
+    
