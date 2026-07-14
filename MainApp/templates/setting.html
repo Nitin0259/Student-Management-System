@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="space-y-8">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+
+        <div>
+            <h1 class="text-3xl font-bold text-slate-800 dark:text-white">
+                ⚙️ Settings
+            </h1>
+
+            <p class="text-slate-500 mt-1">
+                Manage your account and system preferences.
+            </p>
+        </div>
+
+        <button class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white transition">
+
+            <i class="fa-solid fa-floppy-disk mr-2"></i>
+
+            Save Changes
+
+        </button>
+
+    </div>
+
+
+    <div class="grid xl:grid-cols-2 gap-6">
+
+        <!-- Profile -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
+
+            <h2 class="text-xl font-bold mb-6">
+                👤 Profile Settings
+            </h2>
+
+            <div class="flex items-center gap-5 mb-6">
+
+                <img src="{% static 'images/user.png' %}"
+                    class="w-24 h-24 rounded-full object-cover border-4 border-indigo-500">
+
+                <div>
+
+                    <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700">
+
+                        Change Photo
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="space-y-4">
+
+                <input type="text" placeholder="Full Name" class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+                <input type="email" placeholder="Email" class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+                <input type="text" placeholder="Phone" class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+            </div>
+
+        </div>
+
+        <!-- Security -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
+
+            <h2 class="text-xl font-bold mb-6">
+
+                🔒 Security
+
+            </h2>
+
+            <div class="space-y-4">
+
+                <input type="password" placeholder="Current Password"
+                    class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+                <input type="password" placeholder="New Password"
+                    class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+                <input type="password" placeholder="Confirm Password"
+                    class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+            </div>
+
+        </div>
+
+        <!-- Appearance -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
+
+            <h2 class="text-xl font-bold mb-6">
+
+                🌙 Appearance
+
+            </h2>
+
+            <div class="space-y-4">
+
+                <label class="flex justify-between items-center">
+
+                    <span>Dark Mode</span>
+
+                    <input type="checkbox" class="w-5 h-5">
+
+                </label>
+
+                <label class="flex justify-between items-center">
+
+                    <span>Sidebar Collapsed</span>
+
+                    <input type="checkbox" class="w-5 h-5">
+
+                </label>
+
+            </div>
+
+        </div>
+
+        <!-- Notifications -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
+
+            <h2 class="text-xl font-bold mb-6">
+
+                🔔 Notifications
+
+            </h2>
+
+            <div class="space-y-4">
+
+                <label class="flex justify-between">
+
+                    Student Added
+
+                    <input type="checkbox" checked>
+
+                </label>
+
+                <label class="flex justify-between">
+
+                    Student Updated
+
+                    <input type="checkbox" checked>
+
+                </label>
+
+                <label class="flex justify-between">
+
+                    Student Deleted
+
+                    <input type="checkbox" checked>
+
+                </label>
+
+            </div>
+
+        </div>
+
+        <!-- Dashboard -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
+
+            <h2 class="text-xl font-bold mb-6">
+
+                📊 Dashboard
+
+            </h2>
+
+            <div class="space-y-5">
+
+                <div>
+
+                    <label class="block mb-2">
+
+                        Students Per Page
+
+                    </label>
+
+                    <select class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+                        <option>10</option>
+
+                        <option>25</option>
+
+                        <option>50</option>
+
+                        <option>100</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label class="block mb-2">
+
+                        Default Theme Color
+
+                    </label>
+
+                    <select class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+
+                        <option>Indigo</option>
+
+                        <option>Blue</option>
+
+                        <option>Green</option>
+
+                        <option>Purple</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- System -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
+
+            <h2 class="text-xl font-bold mb-6">
+
+                💻 System Information
+
+            </h2>
+
+            <div class="space-y-4 text-slate-600 dark:text-slate-300">
+
+                <div class="flex justify-between">
+
+                    <span>Python</span>
+
+                    <span>3.14</span>
+
+                </div>
+
+                <div class="flex justify-between">
+
+                    <span>Django</span>
+
+                    <span>6.0</span>
+
+                </div>
+
+                <div class="flex justify-between">
+
+                    <span>Database</span>
+
+                    <span>SQLite3</span>
+
+                </div>
+
+                <div class="flex justify-between">
+
+                    <span>Version</span>
+
+                    <span>v1.0</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Danger Zone -->
+
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-red-300 p-6">
+
+        <h2 class="text-xl font-bold text-red-600 mb-6">
+
+            🗑 Danger Zone
+
+        </h2>
+
+        <div class="flex gap-4">
+
+            <button class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white">
+
+                Delete All Students
+
+            </button>
+
+            <button class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

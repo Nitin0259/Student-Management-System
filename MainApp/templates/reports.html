@@ -26,7 +26,8 @@
             </a>
 
             <!-- Print -->
-            <button onclick="window.print()" class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-medium transition">
+            <button onclick="window.print()"
+                class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-medium transition">
                 <i class="fa-solid fa-print mr-2"></i>
                 Print
             </button>
@@ -116,42 +117,43 @@
     </div>
 
     <!-- Filter section -->
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
+    <form method="get" action="{% url 'reports' %}">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-5">
 
-            <input type="date" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
+                <input type="date" name="form_date" value="{{ request.GET.form_date }}" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
 
-            <input type="date" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
+                <input type="date" name="to_date" value="{{ request.GET.to_date }}" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
 
-            <select class="rounded-xl border px-4 py-3 dark:bg-slate-700">
+                <select name="course" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
 
-                <option value="">All Courses</option>
-                <option value="BCA">BCA</option>
-                <option value="B.Tech">B.Tech</option>
-                <option value="MCA">MCA</option>
-                <option value="BBA">BBA</option>
+                    <option value="">All Courses</option>
+                    <option value="BCA">BCA</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="MCA">MCA</option>
+                    <option value="BBA">BBA</option>
 
-            </select>
+                </select>
 
-            <select class="rounded-xl border px-4 py-3 dark:bg-slate-700">
+                <select name="status" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
 
-                <option>Status</option>
+                    <option>Status</option>
 
-                <option>Active</option>
+                    <option>Active</option>
 
-                <option>Inactive</option>
+                    <option>Inactive</option>
 
-            </select>
+                </select>
 
-            <button class="rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium">
+                <button type="submit" class="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white">
+                    <i class="fa-solid fa-chart-column mr-2"></i>
+                    Generate Report
+                </button>
 
-                Generate Report
-
-            </button>
-
+            </div>
         </div>
-    </div>
+    </form>
 
     <!-- Charts section -->
     <div class="grid lg:grid-cols-2 gap-6">

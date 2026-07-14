@@ -137,6 +137,26 @@ def delete_student(request, id):
 def report_student(request):
     students = Student.objects.all()
 
+    # Generate report filter
+    
+    form_date = request.GET.get("form_date")
+    to_date = request.GET.get("to_date")
+    course = request.GET.get("course")
+    status = request.GET.get("status")
+
+    if form_date:
+        students = students.filter(created_at__gte=form_date)
+
+    if to_date:
+        students = students.filter(created_at__lte=to_date)
+
+    if course:
+        students = students.filter(courses=course)
+
+    if status:
+        students = students.filter(status=status)
+
+
     total_student = students.count()
     active_student = students.filter(status="Active").count()
     inactive_student = students.filter(status="Inactive").count()
