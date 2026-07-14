@@ -10,6 +10,7 @@ from django.db.models.functions import TruncMonth
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from openpyxl import Workbook
+from django.contrib.auth import update_session_auth_hash
 
 def login_view(request):
     if request.method == "POST":
@@ -283,6 +284,25 @@ def export_Excel(request):
 @login_required
 def settings(request):
 
+    current_password = request.POST.get("current_password")
+    new_password = request.POST.get("new_password")
+    change_password = request.POST.get("change_password")
+
+    if current_password and new_password and change_password:
+        if not request.user.check_password(current_password):
+            messages.error(request, "Current password is incorrect.")
+
+        elif new_password != change_password:
+            messages.error(request, "New passwords do not match.")
+
+        else:
+            request.user.set_password(new_password)
+            request.user.save()
+
+            update_session_auth_hash(request, request.user)
+
+            messages.success(request, "Password changed successfully.")
+
     settings, created = Settings.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
@@ -299,4 +319,5 @@ def settings(request):
 
         form = SettingsForm(instance=settings)
 
-    return render(request,"settings.html", {"form": form})
+    return render(request,"setting.html", {"form": form})
+
