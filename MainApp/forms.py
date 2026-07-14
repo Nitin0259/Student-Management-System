@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student
+from .models import Student, Settings
 
 class StudentForm(forms.ModelForm):
     class Meta:
@@ -44,3 +44,14 @@ class StudentForm(forms.ModelForm):
                 "class": "w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700"
             }),
         }
+
+class SettingsForm(forms.ModelForm):
+    class Meta:
+        model = Settings
+        fields = [
+            "phone",
+            "profile_image",
+            "dark_mode",
+            "notifications",
+            "theme_color",
+        ]

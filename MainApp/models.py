@@ -64,3 +64,20 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.student_id} - {self.name}"
+
+class Settings(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
+    phone = models.CharField(max_length=10,blank=True)
+    dark_mode = models.BooleanField(default=True)
+    notifications = models.BooleanField(default=True)
+    THEME_CHOICES = [
+        ("Indigo", "Indigo"),
+        ("Blue", "Blue"),
+        ("Green", "Green"),
+        ("Purple", "Purple"),
+    ]
+    theme_color = models.CharField(max_length=20,choices=THEME_CHOICES,default="Indigo")
+
+    def __str__(self):
+        return self.user.username

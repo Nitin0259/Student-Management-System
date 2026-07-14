@@ -3,8 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Activity, Student
-from .forms import StudentForm
+from .models import Activity, Student, Settings
+from .forms import StudentForm, SettingsForm
 from django.db.models import Q, Count
 from django.db.models.functions import TruncMonth
 from django.http import HttpResponse
@@ -138,7 +138,7 @@ def report_student(request):
     students = Student.objects.all()
 
     # Generate report filter
-    
+
     form_date = request.GET.get("form_date")
     to_date = request.GET.get("to_date")
     course = request.GET.get("course")
@@ -277,3 +277,26 @@ def export_Excel(request):
     workbook.save(response)
 
     return response
+
+
+# Settings
+@login_required
+def settings(request):
+
+    settings, created = Settings.objects.get_or_create(user=request.user)
+
+    if request.method == "POST":
+
+        form = SettingsForm(request.POST, request.FILES,instance=settings)
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(request,"Settings updated successfully.")
+            return redirect("settings")
+
+    else:
+
+        form = SettingsForm(instance=settings)
+
+    return render(request,"settings.html", {"form": form})

@@ -11,5 +11,6 @@ urlpatterns = [
     path("student/delete/<int:id>/", views.delete_student, name="delete_student"),
     path("reports/", views.report_student, name='reports'),
     path("export/pdf/", views.export_pdf, name='export_pdf'),
-    path("export/excel/", views.export_Excel, name='export_Excel')
+    path("export/excel/", views.export_Excel, name='export_Excel'),
+    path("settings/", views.settings, name='settings')
 ]
