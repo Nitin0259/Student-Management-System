@@ -57,13 +57,13 @@
                 <div class="space-y-4">
 
                     <input type="text" name="first_name" value="{{ request.user.first_name }}"
-                        class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+                        class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700" placeholder="First name">
 
                     <input type="email" name="email" value="{{ request.user.email }}"
-                        class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+                        class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700" placeholder="xyz@gamil.com">
 
-                    <input type="text" name="phone" value="{{ settings.phone }}"
-                        class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
+                    <input type="tel" name="phone" value="{{ settings.phone }}"
+                        class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700" placeholder="Phone number">
 
                 </div>
 
@@ -83,7 +83,7 @@
                     <input type="password" name="current_password" placeholder="Current Password"
                         class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
 
-                    <input type="password" name="new_passwrod" placeholder="New Password"
+                    <input type="password" name="new_password" placeholder="New Password"
                         class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
 
                     <input type="password" name="confirm_password" placeholder="Confirm Password"
@@ -93,159 +93,33 @@
 
             </div>
 
-            <!-- Appearance -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
-
-                <h2 class="text-xl font-bold mb-6">
-
-                    🌙 Appearance
-
-                </h2>
-
-                <div class="space-y-4">
-
-                    <label class="flex justify-between items-center">
-
-                        <span>Dark Mode</span>
-
-                        <input type="checkbox" name="dark_mode" {% if settings.dark_mode %}checked{% endif %} class="w-5 h-5">
-
-                    </label>
-
-                    <label class="flex justify-between items-center">
-
-                        <span>Sidebar Collapsed</span>
-
-                        <input type="checkbox" class="w-5 h-5">
-
-                    </label>
-
-                </div>
-
-            </div>
-
             <!-- Notifications -->
             <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
 
                 <h2 class="text-xl font-bold mb-6">
-
                     🔔 Notifications
-
                 </h2>
 
-                <div class="space-y-4">
-
-                    <label class="flex justify-between">
-
-                        Student Added
-
-                        <input type="checkbox" name="notifications" {% if settings.notifications %}checked{% endif %}>
-
-                    </label>
-
-                    <label class="flex justify-between">
-
-                        Student Updated
-
-                        <input type="checkbox">
-
-                    </label>
-
-                    <label class="flex justify-between">
-
-                        Student Deleted
-
-                        <input type="checkbox">
-
-                    </label>
-
-                </div>
-
-            </div>
-
-            <!-- Dashboard -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
-
-                <h2 class="text-xl font-bold mb-6">
-
-                    📊 Dashboard
-
-                </h2>
-
-                <div class="space-y-5">
+                <div class="flex justify-between items-center">
 
                     <div>
 
-                        <label class="block mb-2">
+                        <h3 class="font-semibold">
+                            Enable Notifications
+                        </h3>
 
-                            Default Theme Color
-
-                        </label>
-
-                        <select name="theme_color" class="w-full border rounded-xl px-4 py-3 dark:bg-slate-700">
-
-                            <option value="Indigo">Indigo</option>
-
-                            <option value="Blue">Blue</option>
-
-                            <option class="Green">Green</option>
-
-                            <option class="Purple">Purple</option>
-
-                        </select>
+                        <p class="text-sm text-slate-500 mt-1">
+                            Receive notifications when students are added, updated, or deleted.
+                        </p>
 
                     </div>
+
+                    <input type="checkbox" name="notifications" class="w-5 h-5" {% if settings.notifications %}checked{% endif %}>
 
                 </div>
 
             </div>
 
-            <!-- System -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm p-6">
-
-                <h2 class="text-xl font-bold mb-6">
-
-                    💻 System Information
-
-                </h2>
-
-                <div class="space-y-4 text-slate-600 dark:text-slate-300">
-
-                    <div class="flex justify-between">
-
-                        <span>Python</span>
-
-                        <span>3.14</span>
-
-                    </div>
-
-                    <div class="flex justify-between">
-
-                        <span>Django</span>
-
-                        <span>6.0</span>
-
-                    </div>
-
-                    <div class="flex justify-between">
-
-                        <span>Database</span>
-
-                        <span>SQLite3</span>
-
-                    </div>
-
-                    <div class="flex justify-between">
-
-                        <span>Version</span>
-
-                        <span>v1.0</span>
-
-                    </div>
-
-                </div>
-
-            </div>
 
         </div>
 
@@ -261,22 +135,65 @@
 
             <div class="flex gap-4">
 
-                <button class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white">
+                <button type="button" onclick="openDeleteAllModal()" class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white">
 
+                    <i class="fa-solid fa-trash mr-2"></i>
                     Delete All Students
 
                 </button>
 
-                <button class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white">
+                <a href="{% url 'logout' %}" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white">
 
                     Logout
 
-                </button>
+                </a>
 
             </div>
 
         </div>
     </div>
-
 </form>
+
+<div id="deleteAllModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl w-full max-w-md p-7 animate-fadeIn">
+
+        <div class="flex justify-center">
+            <div class="w-20 h-20 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-4xl">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-center mt-5">
+            Delete All Students?
+        </h2>
+
+        <p class="text-center text-slate-500 mt-3">
+            This will permanently delete every student from the database.
+        </p>
+
+        <p class="text-center text-red-600 font-semibold mt-2">
+
+            This action cannot be undone.
+
+        </p>
+
+        <form action="{% url 'delete_all_student' %}" method="post">
+            {% csrf_token %}
+            <div class="flex gap-4 mt-8">
+                <button type="button" onclick="closeDeleteAllModal()" class="flex-1 py-3 rounded-xl border border-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">
+                    Cancel
+                </button>
+                <button
+                    type="submit"
+                    class="flex-1 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white">
+
+                    Delete All
+
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

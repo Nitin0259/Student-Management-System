@@ -337,7 +337,7 @@
 
     // Close when clicking outside the modal
     document.getElementById("deleteModel").addEventListener("click", function (e) {
-      if (e.target == this) {
+      if (e.target === this) {
         closeDeleteModal();
       }
     })
@@ -394,7 +394,30 @@
         }]
       }
     });
+  </script>
 
+  <script>
+    function openDeleteAllModal(){
+      const model = document.getElementById("deleteAllModal");
+
+      model.classList.remove("hidden")
+      model.classList.add("flex")
+    }
+
+    function closeDeleteAllModal(){
+      const model = document.getElementById("deleteAllModal");
+
+      model.classList.remove("flex")
+      model.classList.add("hidden")
+    }
+
+    // Close when clicking outside the modal
+    window.addEventListener("click", function(e) {
+      const model = document.getElementById("deleteAllModel")
+      if (e.target === model) {
+        closeDeleteAllModal();
+      }
+    })
   </script>
 
 </body>

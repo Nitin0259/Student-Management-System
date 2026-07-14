@@ -51,7 +51,5 @@ class SettingsForm(forms.ModelForm):
         fields = [
             "phone",
             "profile_image",
-            "dark_mode",
             "notifications",
-            "theme_color",
         ]

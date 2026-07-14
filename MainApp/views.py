@@ -36,7 +36,69 @@ def login_view(request):
 def dashboard(request):
     activitys = Activity.objects.all()[:5]
     recent_students = Student.objects.order_by("-created_at")[:5]
-    return render(request, "dashboard.html", {"user": request.user, "activitys": activitys, "recent_students": recent_students})
+
+    students = Student.objects.all()
+    total_students = students.count()
+    active_students = students.filter(status="Active").count()
+    inactive_students = students.filter(status="Inactive").count()
+    total_courses = students.values("courses").distinct().count()
+
+    # Dashboard admission chart
+    admission_data = (
+        Student.objects
+        .annotate(month=TruncMonth("created_at"))
+        .values("month")
+        .annotate(total=Count("id"))
+        .order_by("month")
+    ) 
+
+    admission_labels = [
+        item["month"].strftime("%b" "%y")
+        for item in admission_data
+    ]
+
+    admission_values = [
+        item["total"]
+        for item in admission_data
+    ]
+
+    # Dashboard course chart
+    course_data = (
+        Student.objects
+        .values("courses")
+        .annotate(total=Count("id"))
+        .order_by("courses")
+    )
+
+    course_labels = [
+        item["courses"]
+        for item in course_data
+    ]
+
+    course_values = [
+        item["total"]
+        for item in course_data
+    ]
+
+    context = {
+    "user": request.user,
+    "activitys": activitys,
+    "recent_students": recent_students,
+
+    "total_students": total_students,
+    "active_students": active_students,
+    "inactive_students": inactive_students,
+    "total_courses": total_courses,
+
+    "admission_labels": admission_labels,
+    "admission_values": admission_values,
+
+    "course_labels": course_labels,
+    "course_values": course_values,
+
+}
+
+    return render(request, "dashboard.html", context)
 
 def logout_view(request):
     logout(request)
@@ -63,9 +125,12 @@ def add_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST, request.FILES)
 
+        settings, created = Settings.objects.get_or_create(user=request.user)
+
         if form.is_valid():
             student = form.save()
 
+        if settings.notifications:
             # Add studnet
             Activity.objects.create(
                 title=f"{student.name} was added",
@@ -101,12 +166,15 @@ def view_student(request,id):
 def edit_student(request, id):
     student = Student.objects.get(id=id)
 
+    settings, created = Settings.objects.get_or_create(user=request.user)
+
     if request.method == "POST":
         form = StudentForm(request.POST, request.FILES, instance=student)
 
         if form.is_valid():
             form.save()
             
+        if settings.notifications:
             # Edit student details
             Activity.objects.create(
                 title=f"{student.name} was updated",
@@ -123,13 +191,16 @@ def edit_student(request, id):
 def delete_student(request, id):
     student = Student.objects.get(id=id)
 
+    settings, created = Settings.objects.get_or_create(user=request.user)
+
     if request.method == "POST":
-        # Delete student
-        Activity.objects.create(
-            title=f"{student.name} was deleted",
-            color="red",
-            user=request.user
-        )
+
+        if settings.notifications:
+            Activity.objects.create(
+                title=f"{student.name} was deleted",
+                color="red",
+                user=request.user
+            )
 
         student.delete()
 
@@ -284,15 +355,17 @@ def export_Excel(request):
 @login_required
 def settings(request):
 
+    settings, created = Settings.objects.get_or_create(user=request.user)
+
     current_password = request.POST.get("current_password")
     new_password = request.POST.get("new_password")
-    change_password = request.POST.get("change_password")
+    confirm_password = request.POST.get("confirm_password")
 
-    if current_password and new_password and change_password:
+    if current_password and new_password and confirm_password:
         if not request.user.check_password(current_password):
             messages.error(request, "Current password is incorrect.")
 
-        elif new_password != change_password:
+        elif new_password != confirm_password:
             messages.error(request, "New passwords do not match.")
 
         else:
@@ -303,9 +376,11 @@ def settings(request):
 
             messages.success(request, "Password changed successfully.")
 
-    settings, created = Settings.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
+        request.user.first_name = request.POST.get("first_name")
+        request.user.email = request.POST.get("email")
+        request.user.save()
 
         form = SettingsForm(request.POST, request.FILES,instance=settings)
 
@@ -319,5 +394,26 @@ def settings(request):
 
         form = SettingsForm(instance=settings)
 
-    return render(request,"setting.html", {"form": form})
+    return render(request,"setting.html", {"form": form, "settings":settings})
 
+
+# Delete all student
+@login_required
+def delete_all_student(request):
+    if request.method == "POST":
+        total = Student.objects.count()
+
+        Student.objects.all().delete()
+
+        settings, created = Settings.objects.get_or_create(user=request.user)
+
+        if settings.notifications:
+            Activity.objects.create(
+                title=f"Deleted all students ({total})",
+                color="red",
+                user=request.user
+            )
+        
+        messages.success(request, "All students deleted successfully.")
+
+    return redirect("settings")
