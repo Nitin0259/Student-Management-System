@@ -354,4 +354,43 @@
 
   </div>
 </div>
+
+<!-- Delete student pop -->
+<div id="deleteModel" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm">
+
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-[90%] max-w-md p-8 animate-[fadeIn_.2s_ease]">
+
+        <!-- Icon -->
+        <div class="flex justify-center">
+            <div class="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center">
+                <i class="fa-solid fa-trash text-red-600 text-4xl"></i>
+            </div>
+        </div>
+
+        <!-- Heading -->
+        <h2 class="text-2xl font-bold text-center mt-6 text-slate-800 dark:text-white">
+            Delete Student
+        </h2>
+
+        <!-- Message -->
+        <p class="text-center text-slate-500 dark:text-slate-400 mt-4">⚠️ Are you sure you want to delete
+            <span id="studentName" class="font-semibold text-red-600"></span>?
+        </p>
+
+        <p class="text-center mt-2 text-sm text-slate-400">This action cannot be undone.</p>
+
+        <!-- Buttons -->
+        <div class="flex justify-center gap-4 mt-8">
+            <button type="button" onclick="closeDeleteModal()"
+                class="px-6 py-3 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 transition">Cancel</button>
+
+            <form id="deleteForm" method="post">
+                {% csrf_token %}
+
+                <button type="submit"
+                    class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white transition">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
