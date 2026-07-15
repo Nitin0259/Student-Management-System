@@ -8,29 +8,29 @@
             <p class="text-slate-500 mt-1">Analyze student records and generate reports.</p>
         </div>
 
-        <div class="flex gap-3">
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3">
 
-            <!-- Export-PDF -->
+            <!-- Export PDF -->
             <a href="{% url 'export_pdf' %}"
-                class="px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium">
-
+                class="w-full sm:w-auto px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-center transition">
                 <i class="fa-solid fa-file-pdf mr-2"></i>
                 Export PDF
             </a>
 
             <!-- Export Excel -->
-            <a href="{% url 'export_Excel' %}" class="px-5 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white">
-
+            <a href="{% url 'export_Excel' %}"
+                class="w-full sm:w-auto px-5 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium text-center transition">
                 <i class="fa-solid fa-file-excel mr-2"></i>
                 Export Excel
             </a>
 
             <!-- Print -->
             <button onclick="window.print()"
-                class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-medium transition">
+                class="w-full sm:w-auto px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-medium transition">
                 <i class="fa-solid fa-print mr-2"></i>
                 Print
             </button>
+
         </div>
     </div>
 
@@ -38,7 +38,8 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 
         <!-- Total-student -->
-        <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
+        <div
+            class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
 
             <div class="flex justify-between items-center">
                 <div>
@@ -53,7 +54,8 @@
         </div>
 
         <!-- Active-student -->
-        <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
+        <div
+            class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
             <div class="flex justify-between items-center">
                 <div>
                     <p class="text-slate-500">
@@ -74,7 +76,8 @@
         </div>
 
         <!-- Inactive-student -->
-        <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
+        <div
+            class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
             <div class="flex justify-between items-center">
                 <div>
                     <p class="text-slate-500">
@@ -95,7 +98,8 @@
         </div>
 
         <!-- Courses -->
-        <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
+        <div
+            class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:border-indigo-300 dark:hover:border-indigo-500 transition-all duration-300 p-6">
             <div class="flex justify-between items-center">
                 <div>
                     <p class="text-slate-500">
@@ -122,9 +126,11 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-5">
 
-                <input type="date" name="form_date" value="{{ request.GET.form_date }}" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
+                <input type="date" name="form_date" value="{{ request.GET.form_date }}"
+                    class="rounded-xl border px-4 py-3 dark:bg-slate-700">
 
-                <input type="date" name="to_date" value="{{ request.GET.to_date }}" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
+                <input type="date" name="to_date" value="{{ request.GET.to_date }}"
+                    class="rounded-xl border px-4 py-3 dark:bg-slate-700">
 
                 <select name="course" class="rounded-xl border px-4 py-3 dark:bg-slate-700">
 
@@ -155,29 +161,35 @@
         </div>
     </form>
 
-    <!-- Charts section -->
-    <div class="grid lg:grid-cols-2 gap-6">
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
-        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm">
+        <!-- Admission Chart -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 sm:p-6 shadow-sm">
 
-            <h2 class="text-xl font-bold mb-5">
+            <h2 class="text-lg sm:text-xl font-bold mb-5">
                 Admissions Overview
             </h2>
 
-            <canvas id="reportChart" width="280px" height="260px"></canvas>
+            <div class="relative w-full h-72 sm:h-80 md:h-96">
+                <canvas id="reportChart"></canvas>
+            </div>
 
         </div>
 
-        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm">
+        <!-- Course Chart -->
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 sm:p-6 shadow-sm">
 
-            <h2 class="text-xl font-bold mb-5">
+            <h2 class="text-lg sm:text-xl font-bold mb-5">
                 Students By Course
             </h2>
 
-            <div class="w-[470px] h-[470px]">
+            <div class="relative w-full h-72 sm:h-80 md:h-96">
                 <canvas id="courseReport"></canvas>
             </div>
+
         </div>
+
     </div>
 
     <!-- Convert Django data into JSON -->
@@ -190,33 +202,39 @@
 
     <!-- Report-table -->
     <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm overflow-hidden">
-        <div class="px-6 py-5 border-b">
-            <h2 class="text-xl font-bold">Student Report</h2>
+
+        <div class="px-4 sm:px-6 py-5 border-b">
+            <h2 class="text-lg sm:text-xl font-bold">
+                Student Report
+            </h2>
         </div>
 
         <div class="overflow-x-auto">
-            <table class="w-full">
+
+            <table class="min-w-[700px] w-full text-sm sm:text-base">
+
                 <thead class="bg-slate-100 dark:bg-slate-900">
+
                     <tr>
-                        <th class="px-6 py-4">ID</th>
-
-                        <th>Name</th>
-
-                        <th>Course</th>
-
-                        <th>Year</th>
-
-                        <th>Status</th>
-
-                        <th>Date</th>
+                        <th class="px-4 sm:px-6 py-4 text-left">ID</th>
+                        <th class="text-left">Name</th>
+                        <th class="text-left">Course</th>
+                        <th class="text-left">Year</th>
+                        <th class="text-left">Status</th>
+                        <th class="text-left">Date</th>
                     </tr>
+
                 </thead>
 
                 <tbody>
+
                     {% for student in students %}
 
                     <tr class="border-t hover:bg-slate-50 dark:hover:bg-slate-700">
-                        <td class="px-6 py-4">{{ student.student_id }}</td>
+
+                        <td class="px-4 sm:px-6 py-4">
+                            {{ student.student_id }}
+                        </td>
 
                         <td>{{ student.name }}</td>
 
@@ -225,20 +243,30 @@
                         <td>{{ student.year }}</td>
 
                         <td>
+
                             <span class="px-3 py-1 rounded-full text-sm font-medium
                         {% if student.status == 'Active' %}
                         bg-green-100 text-green-600
                         {% else %}
                         bg-red-100 text-red-600
-                        {% endif %}">{{ student.status }}</span>
+                        {% endif %}">
+                                {{ student.status }}
+                            </span>
+
                         </td>
 
                         <td>{{ student.created_at }}</td>
+
                     </tr>
+
                     {% endfor %}
+
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
 
 </div>

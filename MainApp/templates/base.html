@@ -89,13 +89,13 @@
     });
 
     // Notifications
-    function toggleNotification(){
+    function toggleNotification() {
       document.getElementById("notificationMenu").classList.toggle("hidden")
     }
 
-    document.addEventListener("click", function(e) {
+    document.addEventListener("click", function (e) {
       const menu = document.getElementById("notificationMenu")
-      if(!e.target.closest(".relative") ){
+      if (!e.target.closest(".relative")) {
         menu.classList.add("hidden")
       }
     });
@@ -200,7 +200,7 @@
 
   <script>
 
-    
+
     const admissionLabels = JSON.parse(
       document.getElementById("admission-labels").textContent
     );
@@ -229,6 +229,10 @@
           fill: true,
           tension: .4
         }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
       }
     });
 
@@ -247,19 +251,23 @@
             "#ec4899"
           ]
         }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
       }
     });
   </script>
 
   <script>
-    function openDeleteAllModal(){
+    function openDeleteAllModal() {
       const model = document.getElementById("deleteAllModal");
 
       model.classList.remove("hidden")
       model.classList.add("flex")
     }
 
-    function closeDeleteAllModal(){
+    function closeDeleteAllModal() {
       const model = document.getElementById("deleteAllModal");
 
       model.classList.remove("flex")
@@ -267,7 +275,7 @@
     }
 
     // Close when clicking outside the modal
-    window.addEventListener("click", function(e) {
+    window.addEventListener("click", function (e) {
       const model = document.getElementById("deleteAllModel")
       if (e.target === model) {
         closeDeleteAllModal();

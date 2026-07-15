@@ -1,47 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- Add Student page -->
-<div class="space-y-6 px-2 py-2">
-    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-8">
+<div class="space-y-6 px-3 sm:px-4 lg:px-6 py-3">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow p-5 sm:p-6 lg:p-8">
         <h2
-            class="text-xl md:text-2xl xl:text-3xl mb-3 font-bold tracking-tight text-slate-900 dark:text-white transition-colors duration-300">
+            class="text-2xl sm:text-3xl font-bold mb-6 text-slate-900 dark:text-white text-slate-900 dark:text-white transition-colors duration-300">
             Add Student
         </h2>
         <form method="post" id="studentForm" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="font-medium">Student Name</label>
+                    <label class="block mb-2 font-medium text-slate-700 dark:text-slate-300">Student Name</label>
                     {{ form.name }}
                 </div>
                 <div>
-                    <label class="font-medium">Student-ID</label>
+                    <label class="block mb-2 font-medium text-slate-700 dark:text-slate-300">Student-ID</label>
                     {{ form.student_id }}
                 </div>
                 <div>
-                    <label class="font-medium">Email</label>
+                    <label class="block mb-2 font-medium text-slate-700 dark:text-slate-300">Email</label>
                     {{ form.email }}
                     <div class="text-red-500 danger" id="emailError"></div>
                 </div>
                 <div>
                     <label class="phone">Phone</label>
                     {{ form.phone }}
-                    
+
                 </div>
                 <div>
                     <label>Year</label>
                     {{ form.year }}
                 </div>
                 <div>
-                    <label class="font-medium">Course</label>
+                    <label class="block mb-2 font-medium text-slate-700 dark:text-slate-300">Course</label>
                     {{ form.courses }}
                 </div>
                 <div>
-                    <label class="font-medium">Date of Birth</label>
+                    <label class="block mb-2 font-medium text-slate-700 dark:text-slate-300">Date of Birth</label>
                     {{ form.date_of_birth }}
                 </div>
                 <div>
-                    <label class="font-medium">Status</label>
+                    <label class="block mb-2 font-medium text-slate-700 dark:text-slate-300">Status</label>
                     {{ form.status }}
                 </div>
                 <div>
@@ -49,18 +49,24 @@
                     {{ form.admission_date }}
                 </div>
                 <div class="md:col-span-2">
-                    <label class="font-medium">Address</label>
+                    <label class="block mb-2 font-medium text-slate-700 dark:text-slate-300">Address</label>
                     {{ form.address }}
                 </div>
                 <div class="md:col-span-2">
-                    <label class="font-medium">Student Photo</label>
-                    {{ form.photo }}
+                    <label class="block mb-2 font-medium">
+                        Student Photo
+                    </label>
+
+                    <div class="w-full">
+                        {{ form.photo }}
+                    </div>
                 </div>
             </div>
 
-            <div class="mt-8 flex gap-4">
-                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl">Submit</button>
-                <a href="{% url 'students' %}" class="bg-gray-300 hover:bg-gray-400 px-8 py-3 rounded-xl">
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                <button type="submit"
+                    class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl transition">Submit</button>
+                <a href="{% url 'students' %}" class="w-full sm:w-auto bg-gray-300 hover:bg-gray-400 px-8 py-3 rounded-xl text-center transition">
                     Cancel
                 </a>
             </div>
