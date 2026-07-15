@@ -89,31 +89,57 @@
 
     </button>
 
-    <!-- Profile -->
-    <button
-      class="flex items-center gap-3 rounded-xl px-2 sm:px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+    <div class="relative">
+      <!-- Profile -->
+      <button onclick="toggleProfileMenu()"
+        class="flex items-center gap-3 rounded-xl px-2 sm:px-3 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
 
-      <!-- Avatar -->
-      <div>
-        <img src="{% static 'Images/user.jpg' %}"
-          class="w-14 h-14 rounded-full object-cover border-2 border-indigo-500">
+        <!-- Avatar -->
+        <div>
+          {% if settings.profile_image %}
+          <img src="{{ settings.profile_image.url }}"
+            class="w-14 h-14 rounded-full object-cover border-2 border-indigo-500">
+          {% else %}
+          <img src="{% static 'Images/user.jpg' %}"
+            class="w-14 h-14 rounded-full object-cover border-2 border-indigo-500">
+          {% endif %}
+        </div>
+
+        <!-- User Info -->
+        <div class="hidden lg:block text-left">
+          <h4 class="font-semibold text-slate-800 dark:text-white leading-none">
+            {{ request.user.first_name }}
+          </h4>
+
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+            Administrator
+          </p>
+        </div>
+
+        <!-- Arrow -->
+        <i class="fa-solid fa-chevron-down text-xs text-slate-500 dark:text-slate-300 hidden sm:block"></i>
+
+      </button>
+
+      <div id="profileMenu"
+        class="hidden absolute right-0 mt-3 w-60 bg-white dark:bg-slate-800 rounded-xl shadow-xl border">
+
+        <a href="{% url 'settings' %}" class="flex items-center gap-3 px-5 py-3 rounded-t-xl hover:bg-slate-100 dark:hover:bg-slate-700">
+          <i class="fa-solid fa-user"></i>
+          My Profile
+        </a>
+
+        <a href="{% url 'settings' %}" class="flex items-center gap-3 px-5 py-3  hover:bg-slate-100 dark:hover:bg-slate-700">
+          <i class="fa-solid fa-gear"></i>
+          Settings
+        </a>
+
+        <a href="{%  url 'logout' %}" class="flex items-center gap-3 px-5 py-3 rounded-b-xl hover:bg-slate-100 dark:hover:bg-slate-700">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
       </div>
-
-      <!-- User Info -->
-      <div class="hidden lg:block text-left">
-        <h4 class="font-semibold text-slate-800 dark:text-white leading-none">
-          Admin User
-        </h4>
-
-        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
-          Administrator
-        </p>
-      </div>
-
-      <!-- Arrow -->
-      <i class="fa-solid fa-chevron-down text-xs text-slate-500 dark:text-slate-300 hidden sm:block"></i>
-
-    </button>
+    </div>
 
   </div>
 
