@@ -417,6 +417,10 @@ def settings(request):
         form = SettingsForm(request.POST, request.FILES,instance=settings)
 
         if form.is_valid():
+            settings = form.save(commit=False)
+
+            settings.notifications = "notifications" in request.POST
+            settings.save()
             form.save()
 
             messages.success(request,"Settings updated successfully.")
