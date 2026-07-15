@@ -112,15 +112,27 @@
         </h2>
       </div>
 
-      <select
-        class="w-full sm:w-auto px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none transition">
-        <option>This Year</option>
-        <option>This Month</option>
-        <option>Last 6 Months</option>
-      </select>
+      <form method="GET">
+        <select name="filter" onchange="this.form.submit()"
+          class="w-full sm:w-auto px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 dark:text-white">
+
+          <option value="year" {% if filter == "year" %}selected{% endif %}>
+            This Year
+          </option>
+
+          <option value="month" {% if filter == "month" %}selected{% endif %}>
+            This Month
+          </option>
+
+          <option value="6month" {% if filter == "6month" %}selected{% endif %}>
+            Last 6 Months
+          </option>
+
+        </select>
+      </form>
     </div>
     <div class="h-[480px]">
-    <canvas id="reportChart"></canvas>
+      <canvas id="reportChart"></canvas>
     </div>
   </div>
 
@@ -132,10 +144,9 @@
       Student by Course
     </h2>
 
-    <div class="flex items-center gap-6">
-
+    <div class="flex justify-center">
       <!-- Chart -->
-      <div class="w-[440px] h-[420px]">
+      <div class="w-[340px] h-[340px]">
         <canvas id="courseReport"></canvas>
       </div>
 
@@ -143,11 +154,11 @@
   </div>
 
   <!-- Convert Django data into JSON -->
-    {{ admission_labels|json_script:"admission-labels" }}
-    {{ admission_values|json_script:"admission-values" }}
+  {{ admission_labels|json_script:"admission-labels" }}
+  {{ admission_values|json_script:"admission-values" }}
 
-    {{ course_labels|json_script:"course-labels" }}
-    {{ course_values|json_script:"course-values" }}
+  {{ course_labels|json_script:"course-labels" }}
+  {{ course_values|json_script:"course-values" }}
 
   <!-- Quick Actions-->
   <div
@@ -157,7 +168,7 @@
       Quick Actions
     </h3>
 
-    <div class="space-y-8">
+    <div class="space-y-12">
 
       <a href="{% url 'add_student' %}"
         class="inline-flex w-full items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow transition">
@@ -171,7 +182,7 @@
         View Students
       </a>
 
-      <a href="#"
+      <a href="{% url 'students' %}"
         class="inline-flex w-full items-center gap-2 px-5 py-3 bg-green-100 text-green-700 hover:bg-green-200 rounded-xl shadow transition">
         <i class="fa-solid fa-magnifying-glass"></i>
         Search Student

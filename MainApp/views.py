@@ -7,6 +7,8 @@ from .models import Activity, Student, Settings
 from .forms import StudentForm, SettingsForm
 from django.db.models import Q, Count
 from django.db.models.functions import TruncMonth
+from django.utils import timezone
+from datetime import timedelta
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 from openpyxl import Workbook
@@ -42,15 +44,42 @@ def dashboard(request):
     active_students = students.filter(status="Active").count()
     inactive_students = students.filter(status="Inactive").count()
     total_courses = students.values("courses").distinct().count()
+    filter_type = request.GET.get("filter", "year")
+
+    # Year
+    if filter_type == "year":
+        students = Student.objects.filter(
+        created_at__year=timezone.now().year
+        )
+    
+    # Month
+    elif filter_type == "month":
+        today = timezone.now()
+
+        students = Student.objects.filter(
+            created_at__year = today.year,
+            created_at__month = today.month
+        )
+    
+    # 6 Month
+    elif filter_type == "6month":
+        six_month_ago = timezone.now() - timedelta(days=180)
+
+        students = Student.objects.filter(
+            created_at__gte = six_month_ago
+        )
+    
+    else:
+        students = Student.objects.all()
 
     # Dashboard admission chart
     admission_data = (
-        Student.objects
+        students
         .annotate(month=TruncMonth("created_at"))
         .values("month")
         .annotate(total=Count("id"))
         .order_by("month")
-    ) 
+        ) 
 
     admission_labels = [
         item["month"].strftime("%b" "%y")
@@ -92,6 +121,7 @@ def dashboard(request):
 
     "admission_labels": admission_labels,
     "admission_values": admission_values,
+    "filter": filter_type,
 
     "course_labels": course_labels,
     "course_values": course_values,
