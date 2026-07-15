@@ -232,6 +232,7 @@ def report_student(request):
     total_student = students.count()
     active_student = students.filter(status="Active").count()
     inactive_student = students.filter(status="Inactive").count()
+    total_courses = students.values("courses").distinct().count()
 
 
     # Admission-chart
@@ -277,6 +278,7 @@ def report_student(request):
         "total_student": total_student,
         "active_student": active_student,
         "inactive_student": inactive_student,
+        "total_courses": total_courses,
         
         "admission_values":admission_values,
         "admission_labels": admission_labels,

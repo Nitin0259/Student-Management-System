@@ -88,6 +88,19 @@
       }
     });
 
+    // Notifications
+    function toggleNotification(){
+      document.getElementById("notificationMenu").classList.toggle("hidden")
+    }
+
+    document.addEventListener("click", function(e) {
+      const menu = document.getElementById("notificationMenu")
+      if(!e.target.closest(".relative") ){
+        menu.classList.add("hidden")
+      }
+    });
+
+
     // Theme toggle
     document.querySelectorAll(".myToggleBtn").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -126,164 +139,6 @@
     };
 
     currentDate.querySelector("span").textContent = today.toLocaleDateString("en-IN", options)
-
-    //  Cards
-    function createMiniChart(id, data, color) {
-      new Chart(document.getElementById(id), {
-        type: "line",
-        data: {
-          labels: ["", "", "", "", "", ""],
-          datasets: [{
-            data: data,
-            borderColor: color,
-            borderWidth: 2,
-            tension: 0.4,
-            pointRadius: 0,
-            fill: false
-          }]
-        },
-        options: {
-          responsive: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: { enabled: false }
-          },
-          scales: {
-            x: { display: false },
-            y: { display: false }
-          }
-        }
-      });
-    }
-
-    // Total student
-    createMiniChart(
-      "totalStudentsChart",
-      [20, 25, 28, 26, 31, 36],
-      "#4f46e5"
-    );
-    // Male Student
-    createMiniChart(
-      "maleStudentsChart",
-      [12, 14, 13, 16, 14, 17],
-      "#22c55e"
-    )
-    // Female student
-    createMiniChart(
-      "femaleStudentsChart",
-      [8, 10, 9, 12, 14, 11],
-      "#ec4899"
-    )
-
-    // Total courses
-    createMiniChart(
-      "totalCoursesChart",
-      [8, 10, 12, 11, 13, 11],
-      "#007fff"
-    )
-
-    // Admission-overview chart
-    new Chart(document.getElementById("admissionChart"), {
-
-      type: "line",
-
-      data: {
-
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-
-        datasets: [{
-
-          data: [10, 17, 14, 24, 30, 18, 25],
-
-          borderColor: "#4f46e5",
-
-          backgroundColor: "rgba(79,70,229,.12)",
-
-          fill: true,
-
-          pointRadius: 4,
-
-          pointHoverRadius: 6,
-
-          tension: .4
-
-        }]
-
-      },
-
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-
-        plugins: {
-          legend: {
-            display: false
-          }
-        },
-
-        scales: {
-          x: {
-            grid: {
-              display: false
-            }
-          },
-
-          y: {
-            beginAtZero: true
-          }
-        }
-
-      }
-    });
-
-    // Student course
-    const ctx = document.getElementById("courseChart");
-
-    new Chart(ctx, {
-
-      type: "doughnut",
-
-      data: {
-
-        labels: ["BCA", "B.Tech", "MCA", "BBA", "MBA"],
-
-        datasets: [{
-
-          data: [30, 25, 20, 15, 10],
-
-          backgroundColor: [
-            "#6366F1", // Indigo
-            "#3B82F6", // Blue
-            "#22C55E", // Green
-            "#EC4899", // Pink
-            "#F59E0B"  // Orange
-          ],
-
-          borderWidth: 0,
-          hoverOffset: 8,
-        }]
-
-      },
-
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-
-        cutout: "60%",
-
-        plugins: {
-          legend: {
-            display: false
-          },
-
-          tooltip: {
-            backgroundColor: "#1e293b",
-            padding: 12,
-            cornerRadius: 10
-          }
-        }
-      }
-    });
   </script>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -345,7 +200,7 @@
 
   <script>
 
-
+    
     const admissionLabels = JSON.parse(
       document.getElementById("admission-labels").textContent
     );
