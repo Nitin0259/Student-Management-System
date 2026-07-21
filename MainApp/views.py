@@ -20,7 +20,7 @@ def login_view(request):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
 
-        if user is not None:
+        if user:
             # A backend authenticated the credentials
             login(request, user)
             
@@ -30,8 +30,9 @@ def login_view(request):
                 request.session.set_expiry(0)
 
             return redirect("dashboard")
-        
-        messages.error(request, "Invalid username or password")
+        else:
+            messages.error(request, "Invalid username or password.")
+
     return render(request, "login.html")
 
 @login_required
